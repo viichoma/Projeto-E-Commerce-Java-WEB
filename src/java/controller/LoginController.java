@@ -31,11 +31,11 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+    // Checar função que deve ocorrer ao dar submit
     String acao = request.getParameter("acao");
         if (acao != null) {
         switch (acao) {
-            case "login":
+            case "logar":
                 LoginUser(request, response);
                 break;
             case "register":
@@ -46,30 +46,35 @@ public class LoginController extends HttpServlet {
                       }
                          }
     }
-    
-    protected void LoginUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // Função de Login de usuario
+     protected void LoginUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             try (PrintWriter out = response.getWriter()) {
                 UsuarioVO user = new UsuarioVO();
                 user.setEmail(request.getParameter("email"));
                 user.setPassword(request.getParameter("senha"));
-                
+                //Pegar os dados que serão checados no BD para logar
                 UsuarioDAO uDAO = new UsuarioDAO();
-                if(uDAO.login( user.getEmail(), user.getPassword() )){
+                String email = user.getEmail();
+                String senha = user.getPassword();
+              //Se login tiver sucesso, vai para a pagina inicial logada, senão vai para o registro.  
+                if(uDAO.login( email, senha )){
                 response.sendRedirect("index.html");
                 } else {
                     response.sendRedirect("register.jsp");
                 } 
             }   
     }
+    // Função de registrar usuario
     protected void RegUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
              try (PrintWriter out = response.getWriter()) {
-            
+            //Pegar os dados do usuario que serão gravados e armazenados no BD
             UsuarioVO user = new UsuarioVO();
             user.setEmail(request.getParameter("email"));
             user.setUsername(request.getParameter("nome"));
             user.setPassword(request.getParameter("senha"));
             
             UsuarioDAO uDAO = new UsuarioDAO();
+            //Se o registro der certo, vai para o login, senão vai para a página inicial
             if(uDAO.gravar(user)){
                response.sendRedirect("login.jsp");
             }else{

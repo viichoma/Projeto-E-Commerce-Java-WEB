@@ -37,25 +37,37 @@ public class UsuarioDAO {
    } 
 
     public boolean login(String email, String senha){
+        Connection con = null; //conexão com o bd
+        PreparedStatement ps = null; // estrutura o sql
+        ResultSet rs = null; //armazenará o resultado do bd
         try {
-        Connection con = new Conexao().estabeleceConexao(); //conexão com o bd
-        PreparedStatement ps; // estrutura o sql
-        ResultSet rs; //armazenará o resultado do bd
+        con = new Conexao().estabeleceConexao();
         if(con != null) {
-        String sql = "select email, senha from usuarios where email = '"+email+"' and senha = '"+senha+"' ";
+        String sql = "select email, senha from usuarios where email = ? and senha = ? ";
         ps = con.prepareStatement(sql);
+        ps.setString(1, email);
+        ps.setString(2, senha);
         rs = ps.executeQuery();
-        con.close();
-        rs.next();
+        return rs.next();
+        }
         
-        }
         }  catch (SQLException erro) {
-            System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
-            return false;
+        System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
+        return false;
+    } finally {
+        // Fechando conexões e recursos
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            System.err.print("Erro ao fechar conexão: " + e.getMessage());
         }
-        return true;
-    
     }
+    
+    return false;
+    }
+    
     
         
 }

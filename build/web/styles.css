@@ -6,6 +6,91 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Created on : 2 de mai. de 2024, 15:39:24
     Author     : unico
 */
-@font-face{
+
+body {
     font-family: Consolas, monaco, monospace;
+    color: #2b2b2b;
+    background: #ffffffff;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
+
+/*--------[Estilos do menu superior do site]--------*/
+
+header{
+    text-align: center;
+    border-bottom: 2px solid #7a98e4;
+}
+
+nav{
+                        font-size: 20px;
+
+                    text-decoration: none;
+}
+
+#MenuGeral{
+    background-color: #ffffffff; 
+    text-align: center;       
+    position: static;
+}
+
+#menu_logo{
+    width: auto;
+    height: 90px   ;
+}
+
+.menu_logo{
+    display: block; /* Permite ajustar margens */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+    height: 85px;
+    width: auto;
+}
+a{
+    color:#2b2b2b;
+    text-decoration: none}
+
+a:hover {
+    color: #7a98e4;
+}
+
+/*--------[Estilos dos input de login e registro do site]--------*/
+input:focus {
+  outline: none;
+}
+
+.login_input{
+    
+            font-family: Consolas, monaco, monospace;
+            font-size: 17px;
+            font-weight: 600;
+            height: 40px;
+            width: 250px;
+            background-color: #ffffff;
+            color: #7a98e4;
+            border: 0.5px solid #7a98e4;
+            border-radius: 3px;
+            box-shadow: 5px 5px;
+}
+
+.submit_input{
+    
+            font-family: Consolas, monaco, monospace;
+            font-size: 17px;
+            font-weight: 600;
+            height: 40px;
+            width: 100px;
+            background-color: #ffffff;
+            color: #7a98e4;
+            border: 0.5px solid #7a98e4;
+            border-radius: 3px;
+            box-shadow: 5px 5px;
+            
+}
+
+.submit_input:active{
+    color: #ffffff;
+     background-color: #7a98e4;
+}
+
+/*--------[]--------*/
