@@ -1,3 +1,9 @@
+<%-- 
+    Document   : logged
+    Created on : 6 de mai. de 2024, 21:55:30
+    Author     : unico
+--%>
+
 <!DOCTYPE html>
 <!--
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -13,7 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>
     
     <body>
-       <!-- CabeÃ§alho com o MenuGeral presente em todo o site -->
+       <!-- Cabeçalho com o MenuGeral presente em todo o site -->
         <header>
         <div id="MenuGeral" class="" >
             <div id="menu_logo">
@@ -23,7 +29,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <!-- Conjunto de acessos de login e carrinho do site-->
                 <nav style="float: right; margin-right: 20px;">
                     <strong>
-                    <a href="login.jsp" class="login">Login</a>
+                    <a href="#" class="login">USERNAME</a>
                     <a href="#" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
@@ -34,7 +40,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <strong>
                     <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
-                    <a href="#" style="margin-right: 40px;">Sobre nÃ³s</a>
+                    <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
                 </nav>
                 <br>

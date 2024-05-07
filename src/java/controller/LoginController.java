@@ -58,7 +58,7 @@ public class LoginController extends HttpServlet {
                 String senha = user.getPassword();
               //Se login tiver sucesso, vai para a pagina inicial logada, senão vai para o registro.  
                 if(uDAO.login( email, senha )){
-                response.sendRedirect("index.html");
+                response.sendRedirect("logged.jsp");
                 } else {
                     response.sendRedirect("register.jsp");
                 } 
