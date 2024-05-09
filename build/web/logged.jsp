@@ -27,9 +27,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div>
             <br>
             <!-- Conjunto de acessos de login e carrinho do site-->
-                <nav style="float: right; margin-right: 20px;">
+                <nav style="float: right; margin-right: 0px;">
                     <strong>
-                    <a href="#" class="login">USERNAME</a>
+                    <a href="user_profile.jsp" class="login">USERNAME</a>
                     <a href="#" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>

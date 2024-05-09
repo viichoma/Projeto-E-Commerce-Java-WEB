@@ -67,10 +67,19 @@
             <input type="text" name="email" placeholder="E-mail" required class="login_input"><br><br>
             <input type="password" name="senha" placeholder="Senha atual" required class="login_input"><br><br>
             <input type="password" name="ConfSenha" placeholder="Nova senha" required class="login_input"><br><br>
-            <input type="submit" class="submit_input" >
+            <input type="submit" class="submit_input" value="Alterar">
 
             
             </form>
+                <img src="imagens/user_icon.png" alt="alt" style="
+                    position: absolute;
+                    top: 35%;
+                    left: 15%;
+                    transform: translate(-50%, -50%);
+                     width: 150px;
+                     height: auto;
+
+                     "/>
             </div>
         </div>
     </body>
