@@ -78,7 +78,18 @@
                     transform: translate(-50%, -50%);
                      width: 150px;
                      height: auto;
-
+                     "/>
+                
+                <img src="imagens/delete_user.webp" alt="alt" 
+                    title="Excluir usuario"
+                    style="
+                     
+                    position: absolute;
+                    top: 90%;
+                    left: 91%;
+                    transform: translate(-50%, -50%);
+                    width: 60px;
+                    height: auto;
                      "/>
             </div>
         </div>
