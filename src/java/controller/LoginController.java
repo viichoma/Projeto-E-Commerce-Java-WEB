@@ -41,12 +41,14 @@ public class LoginController extends HttpServlet {
             case "register":
                 RegUser(request, response);
                 break;
+            case "update":
+                UpdateUser(request, response);
             default:
                 break;
                       }
                          }
     }
-    // Função de Login de usuario
+    // Função de Login de usuari´´´Ko
      protected void LoginUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             try (PrintWriter out = response.getWriter()) {
                 UsuarioVO user = new UsuarioVO();
@@ -65,6 +67,25 @@ public class LoginController extends HttpServlet {
             }   
     }
     // Função de registrar usuario
+    protected void UpdateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+             try (PrintWriter out = response.getWriter()) {
+            //Pegar os dados do usuario que serão gravados e armazenados no BD
+            UsuarioVO user = new UsuarioVO();
+            user.setUsername(request.getParameter("nome_profile"));
+            user.setEmail(request.getParameter("oldemail_profile"));
+            user.setPassword(request.getParameter("SenhaNova_profile"));
+            
+            UsuarioDAO uDAO = new UsuarioDAO();
+            //Se o registro der certo, vai para o login, senão vai para a página inicial
+            if(uDAO.update(user)){
+               response.sendRedirect("user_profile.jsp");
+            }else{
+               response.sendRedirect("register.jsp"); 
+            }
+        }
+        
+    }
+    
     protected void RegUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
              try (PrintWriter out = response.getWriter()) {
             //Pegar os dados do usuario que serão gravados e armazenados no BD
@@ -83,7 +104,26 @@ public class LoginController extends HttpServlet {
         }
         
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+    
+       /* protected void getID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+             try (PrintWriter out = response.getWriter()) {
+            //Pegar os dados do usuario que serão gravados e armazenados no BD
+            UsuarioVO user = new UsuarioVO();
+            user.setEmail(request.getParameter("email"));
+            
+            UsuarioDAO uDAO = new UsuarioDAO();
+            //Se o registro der certo, vai para o login, senão vai para a página inicial
+            if(uDAO.getValorDB(user) !=){
+               response.sendRedirect("logged.jsp");
+            }else{
+               response.sendRedirect("login.jsp"); 
+            }
+        }
+        
+    }
+*/
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

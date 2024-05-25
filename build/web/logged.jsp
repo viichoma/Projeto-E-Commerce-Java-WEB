@@ -47,6 +47,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div> 
         </div>
         </header>
-        
+       <div style="width: 1500px;height: auto; min-height: 300px; border: 0px solid black;
+                    position: absolute;
+                    top: 40%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                     ">
+           <div style="width: 200px; height: auto;">
+               <a href="#">
+               <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
+               <pre style="font-weight: 800; font-size: 14px">Jaqueta de corrida Ferrari.<br>RS$ 500</pre>
+               </a>
+           </div>
+       </div>
+
     </body>
 </html>

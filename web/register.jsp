@@ -49,11 +49,13 @@
             <input type="hidden" name="acao" value="register">
             <h2>Entrar</h2>
             <p>Insira seu e-mail e senha para entrar:</p>
+            
             <input type="text" name="nome" placeholder="Nome" required class="login_input"><br><br>
             <input type="text" name="email" placeholder="E-mail" required class="login_input"><br><br>
             <input type="password" name="senha" placeholder="Senha" required class="login_input"><br><br>
             <input type="password" name="ConfSenha" placeholder="Confrimar senha" required class="login_input"><br><br>
             <input type="submit" class="submit_input" >
+            
             <p><a href="login.jsp">Voltar</a></p>
             
             </form>

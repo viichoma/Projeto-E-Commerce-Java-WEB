@@ -60,13 +60,14 @@
             <div style="text-align: center">
             <form action="LoginController" method="post">
             <!-- Se a ação for register, o LoginController efetua a funçao de gravar -->
-            <input type="hidden" name="acao" value="register">
+            <input type="hidden" name="acao" value="update">
             <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Meu Perfil</h1>
             <p>Altere os campos caso queira alterar seus dados:</p>
-            <input type="text" name="nome" placeholder="Nome" required class="login_input"><br><br>
-            <input type="text" name="email" placeholder="E-mail" required class="login_input"><br><br>
-            <input type="password" name="senha" placeholder="Senha atual" required class="login_input"><br><br>
-            <input type="password" name="ConfSenha" placeholder="Nova senha" required class="login_input"><br><br>
+            <input type="text" name="nome_profile" placeholder="Nome" required class="login_input"><br><br>
+            <input type="text" name="oldemail_profile" placeholder="E-mail Antigo" required class="login_input"><br><br>
+            <input type="text" name="newemail_profile" placeholder="E-mail Novo" required class="login_input"><br><br>
+            <input type="password" name="senha_profile" placeholder="Senha atual" required class="login_input"><br><br>
+            <input type="password" name="SenhaNova_profile" placeholder="Nova senha" required class="login_input"><br><br>
             <input type="submit" class="submit_input" value="Alterar">
 
             

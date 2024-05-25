@@ -9,9 +9,18 @@ package VO;
  * @author unico
  */
 public class UsuarioVO {
+    private String id;
     private String email;
     private String username;
     private String password;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     
     public String getEmail(){
         return email;

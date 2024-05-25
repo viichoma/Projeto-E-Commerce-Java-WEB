@@ -18,10 +18,11 @@ public class UsuarioDAO {
             if (con != null)
             {
             PreparedStatement ps;
-            String sql = "insert into usuarios (email, nome, senha) values (?, ?, ?)";
+            String sql = "insert into usuario (DS_NOME, DS_EMAIL, DS_SENHA) values ( ?, ?, ?)";
             ps = con.prepareStatement(sql);
-            ps.setString(1, user.getEmail());
-            ps.setString(2, user.getUsername());
+            
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getEmail());
             ps.setString(3, user.getPassword());
             if (ps.executeUpdate() != 0) {
                     System.out.println("Sucesso ao inserir");
@@ -43,7 +44,7 @@ public class UsuarioDAO {
         try {
         con = new Conexao().estabeleceConexao();
         if(con != null) {
-        String sql = "select email, senha from usuarios where email = ? and senha = ? ";
+        String sql = "select CD_USUARIO from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
         ps = con.prepareStatement(sql);
         ps.setString(1, email);
         ps.setString(2, senha);
@@ -68,7 +69,55 @@ public class UsuarioDAO {
     return false;
     }
     
+    public boolean update(UsuarioVO user) {
+            try {
+            Connection con = new Conexao().estabeleceConexao();
+            if (con != null)
+            {
+            PreparedStatement ps;
+            String sql = "update usuario set DS_NOME = ?, DS_EMAIL = ?, DS_SENHA = ? where DS_EMAIL = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPassword());
+            ps.setString(4, user.getEmail());
+            if (ps.executeUpdate() != 0) {
+                    System.out.println("Sucesso ao atualizar");
+                } else {
+                    System.out.println("Não foi possível atualizar");
+                }
+                con.close();
+            }
+                } catch (SQLException erro) {
+            System.out.println("Exceção causada na inserção");
+        }
+         return true;
+   }    
+ 
+    /* public String getValorDB(UsuarioVO user) {
+            ResultSet rs = null; //armazenará o resultado do bd
+            String value = null;
+            try {
+            Connection con = new Conexao().estabeleceConexao();
+            if (con != null)
+            {
+            PreparedStatement ps;
+            String sql = "select CD_USUARIO from USUARIO where DS_EMAIL = ?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user.getEmail());
+            rs = ps.executeQuery();
+            if(rs.next()){
+                value = rs.getString("CD_USUARIO");
+            }
+            
     
-        
+                con.close();
+            }
+                } catch (SQLException erro) {
+            System.out.println("Exceção causada na inserção");
+        }
+         return value;
+   }
+    */
 }
 
