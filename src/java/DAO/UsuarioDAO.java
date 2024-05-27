@@ -49,11 +49,9 @@ public class UsuarioDAO {
         ps.setString(1, email);
         ps.setString(2, senha);
         rs = ps.executeQuery();
-        
-        return rs.next();
         }
-
-        }  catch (SQLException erro) {
+        }
+        catch (SQLException erro) {
         System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
         return false;
     } finally {
@@ -95,5 +93,39 @@ public class UsuarioDAO {
          return true;
    }    
  
+        public Integer getID(String email, String senha){
+        Connection con = null; //conexão com o bd
+        PreparedStatement ps = null; // estrutura o sql
+        ResultSet rs = null; //armazenará o resultado do bd
+        Integer userId = null;
+        try {
+        con = new Conexao().estabeleceConexao();
+        if(con != null) {
+        String sql = "select CD_USUARIO from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
+        ps = con.prepareStatement(sql);
+        ps.setString(1, email);
+        ps.setString(2, senha);
+        rs = ps.executeQuery(sql);
+        if (rs.next()) {
+        userId = rs.getInt("CD_USUARIO");
+                        }
+        }
+        }
+        catch (SQLException erro) {
+        System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
+        return userId;
+    } finally {
+        // Fechando conexões e recursos
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            System.err.print("Erro ao fechar conexão: " + e.getMessage());
+        }
+    }
+    
+    return false;
+    }
 }
 
