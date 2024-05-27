@@ -25,7 +25,7 @@
             <!-- Conjunto de acessos de login e carrinho do site-->
                 <nav style="float: right; margin-right: 20px;">
                     <strong>
-                    <a href="login.jsp" class="login">Login</a>
+                    <a href="user_profile.jsp" class="login">USERNAME</a>
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
@@ -43,38 +43,55 @@
             </div> 
         </div>
         </header>
-       
-       <div
-           style="
-           padding-top: 100px;
-           padding-left: 300px; 
-           ">
+       <div>
+           <h1  style="
+            padding-top: 20px;
+            padding-left: 200px;
+            
+            ">Seu carrinho</h1>
+            <div
+            style="
+            padding-top: 20px;
+            padding-left: 200px;
+            
+            ">
+
+            <table style="border: 0px solid black; width: 1500px; height: auto;scale: 95%;">
+                    <colgroup>
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                        <col style="width: 10%;">
+                    </colgroup>
+                <tr>
+                    <th style="font-size: 18px;">Produto</th>
+                    <th></th>
+                    <th style="font-size: 18px">Quantidade</th>
+                    <th style="font-size: 18px">Preço</th>
+                </tr>
+                <tr style="border: 0px solid black; height: 150px; padding-bottom: 20px; text-align: center;">
+                    <td style="border: 0px solid black;">
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <img src="imagens/FERRARI-JACKET.webp" alt="alt" style="width: 200px; height: auto;">
+                        </div>
+                    </td>
+                    <td>
+                        <p>Jaqueta de corrida Ferrari</p>
+                    </td>
+                    <td style="vertical-align: middle;">
+                        <input type="number" placeholder="Quantidade" value="1" style="text-align: center; width: 100px;">
+                    </td>
+                    <td style="vertical-align: middle;">
+                        <p>R$ 500,00</p>
+                    </td>
+                </tr>
+            </table>
+            </div>
            
-           <table style="border: 1.5px solid black; width: 600px; height: auto">
-               <tr style="border: 1.5px solid black; height: 150px; padding-bottom: 20px">
-                   
-                   <td style="border: 1.5px solid black; ">
-                       <div><img src="src" alt="alt"/></div>
-                       Dados
-                   </td>
-               </tr>
-               
-               <tr style="border: 1.5px solid black; height: 150px;">
-                   <td style="border: 1.5px solid black; "> Dados </td>
-               </tr>
-               
-               <tr style="border: 1.5px solid black; height: 150px;">
-                   <td style="border: 1.5px solid black; "> Dados </td>
-               </tr>
-               
-               <tr style="border: 1.5px solid black; height: 150px;">
-                   <td style="border: 1.5px solid black; "> Dados </td>
-               </tr>
-               <tr style="border: 1.5px solid black; height: 150px;">
-                   <td style="border: 1.5px solid black; "> Dados </td>
-               </tr>
-           </table>
-       </div>
+           <div>
+               <br><br><input type="submit" placeholder="" value="Confirmar Pagamento" class="add_cart" style="margin-left: 1450px">
+           </div>
+        </div>
     
     </body>
     

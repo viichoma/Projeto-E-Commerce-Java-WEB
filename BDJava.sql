@@ -19,13 +19,48 @@
 CREATE DATABASE IF NOT EXISTS `projetojava` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `projetojava`;
 
--- Copiando estrutura para tabela projetojava.usuarios
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `email` varchar(50) NOT NULL,
-  `nome` varchar(50) DEFAULT NULL,
-  `senha` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`email`)
+-- Copiando estrutura para tabela projetojava.item_pedido
+CREATE TABLE IF NOT EXISTS `item_pedido` (
+  `CD_PEDIDO` int(11) DEFAULT NULL,
+  `CD_PRODUTO` int(11) DEFAULT NULL,
+  `VL_PRECO` double DEFAULT NULL,
+  `QT_QUANTIDADE` double DEFAULT NULL,
+  `VL_PRECO_TOTAL` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela projetojava.pedido
+CREATE TABLE IF NOT EXISTS `pedido` (
+  `CD_PEDIDO` int(11) NOT NULL,
+  `CD_USUARIO` int(11) NOT NULL,
+  `VL_TOTAL` double NOT NULL DEFAULT 0,
+  PRIMARY KEY (`CD_PEDIDO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela projetojava.produto
+CREATE TABLE IF NOT EXISTS `produto` (
+  `CD_PRODUTO` int(11) NOT NULL AUTO_INCREMENT,
+  `DS_PRODUTO` varchar(50) NOT NULL DEFAULT '',
+  `VL_PRECO` double NOT NULL DEFAULT 0,
+  `DS_TAMANHO` varchar(50) NOT NULL DEFAULT '0',
+  `DS_CATEGORIA` varchar(50) DEFAULT NULL,
+  `DS_GENERO` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`CD_PRODUTO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela projetojava.usuario
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `CD_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
+  `DS_NOME` varchar(50) NOT NULL,
+  `DS_EMAIL` varchar(50) NOT NULL,
+  `DS_SENHA` varchar(50) NOT NULL,
+  PRIMARY KEY (`CD_USUARIO`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- Exportação de dados foi desmarcado.
 

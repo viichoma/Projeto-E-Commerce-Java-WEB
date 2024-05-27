@@ -38,7 +38,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                    <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                        <a href="logged.jsp" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>

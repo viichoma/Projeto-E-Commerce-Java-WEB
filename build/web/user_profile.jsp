@@ -34,7 +34,7 @@
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                    <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <a href="logged.jsp" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
@@ -64,8 +64,7 @@
             <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Meu Perfil</h1>
             <p>Altere os campos caso queira alterar seus dados:</p>
             <input type="text" name="nome_profile" placeholder="Nome" required class="login_input"><br><br>
-            <input type="text" name="oldemail_profile" placeholder="E-mail Antigo" required class="login_input"><br><br>
-            <input type="text" name="newemail_profile" placeholder="E-mail Novo" required class="login_input"><br><br>
+            <input type="text" name="email_profile" placeholder="E-mail Novo" required class="login_input"><br><br>
             <input type="password" name="senha_profile" placeholder="Senha atual" required class="login_input"><br><br>
             <input type="password" name="SenhaNova_profile" placeholder="Nova senha" required class="login_input"><br><br>
             <input type="submit" class="submit_input" value="Alterar">

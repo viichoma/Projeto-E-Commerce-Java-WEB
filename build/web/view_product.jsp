@@ -35,7 +35,7 @@
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                    <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                        <a href="logged.jsp" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
@@ -54,14 +54,14 @@
                <img style="width: 500px; height: auto; border-radius: 5px;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
            </div>
            <div style="    height: 400px; flex: 0; padding: 52px;">
-                <pre style="font-weight: 800; font-size: 20px">Jaqueta de corrida Ferrari.<h2 style="">RS$ 500,00</h2></pre>
+                <pre style="font-weight: 800; font-size: 20px">Jaqueta de corrida Ferrari<h2 style="">RS$ 500,00</h2></pre>
                 <form action="" style="display: flex; flex-direction: column; align-items: center;">
                     <div style="display: flex; justify-content: center; gap: 10px;">
-                    <input type="checkbox" id="" name="size_P" value="">
+                    <input type="radio" id="size_P" name="size" value="P">
                     <label for="size_P"> P </label>
-                    <input type="checkbox" id="" name="size_M" value="">
+                    <input type="radio" id="size_M" name="size" value="M">
                     <label for="size_M"> M </label>
-                    <input type="checkbox" id="vehicle3" name="size_G" value="">
+                    <input type="radio" id="size_G" name="size" value="G">
                     <label for="size_G"> G </label>
                     </div><br><br>
                     <label for="product_quant"> Quantidade </label><br>

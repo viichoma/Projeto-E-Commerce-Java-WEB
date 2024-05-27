@@ -49,9 +49,10 @@ public class UsuarioDAO {
         ps.setString(1, email);
         ps.setString(2, senha);
         rs = ps.executeQuery();
+        
         return rs.next();
         }
-        
+
         }  catch (SQLException erro) {
         System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
         return false;
@@ -94,30 +95,5 @@ public class UsuarioDAO {
          return true;
    }    
  
-    /* public String getValorDB(UsuarioVO user) {
-            ResultSet rs = null; //armazenará o resultado do bd
-            String value = null;
-            try {
-            Connection con = new Conexao().estabeleceConexao();
-            if (con != null)
-            {
-            PreparedStatement ps;
-            String sql = "select CD_USUARIO from USUARIO where DS_EMAIL = ?";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, user.getEmail());
-            rs = ps.executeQuery();
-            if(rs.next()){
-                value = rs.getString("CD_USUARIO");
-            }
-            
-    
-                con.close();
-            }
-                } catch (SQLException erro) {
-            System.out.println("Exceção causada na inserção");
-        }
-         return value;
-   }
-    */
 }
 
