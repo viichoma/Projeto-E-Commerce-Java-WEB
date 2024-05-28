@@ -9,6 +9,7 @@ import DAO.UsuarioDAO;
 import VO.UsuarioVO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,7 @@ public class LoginController extends HttpServlet {
         switch (acao) {
             case "logar":
                 LoginUser(request, response);
+                //getUserID(request, response);
                 break;
             case "register":
                 RegUser(request, response);
@@ -106,23 +108,17 @@ public class LoginController extends HttpServlet {
     }
     
     
-       /* protected void getID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /*   protected void getUserID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
              try (PrintWriter out = response.getWriter()) {
-            //Pegar os dados do usuario que serão gravados e armazenados no BD
-            UsuarioVO user = new UsuarioVO();
-            user.setEmail(request.getParameter("email"));
-            
-            UsuarioDAO uDAO = new UsuarioDAO();
-            //Se o registro der certo, vai para o login, senão vai para a página inicial
-            if(uDAO.getValorDB(user) !=){
-               response.sendRedirect("logged.jsp");
-            }else{
-               response.sendRedirect("login.jsp"); 
-            }
+                 String email = "vi";
+                 String senha = "vi123";
+                 UsuarioDAO user = new UsuarioDAO();
+                int userId = user.getID(email, senha);
+                request.setAttribute("userId", userId);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("user_profile.jsp");
         }
         
-    }
-*/
+    } */
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
