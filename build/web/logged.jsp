@@ -9,6 +9,16 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
+
+<%      
+    session = request.getSession();
+    Integer userId = (Integer) session.getAttribute("userId");
+
+    if (userId != null) {
+        // Aqui você pode adicionar lógica para o usuário autenticado
+        // Por exemplo, exibir uma mensagem de boas-vindas ou carregar dados do usuário
+%>
+
 <html>
     <head>
         <title>Le Saint Jean</title>
@@ -72,12 +82,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </body>
 </html>
 
-<%      session = request.getSession();
-        Integer userId = (Integer) session.getAttribute("userId");
-
-        if (userId != null) {
-        
-        } 
-        else {
-            response.sendRedirect("login.jsp");
-        }   %>
+<%      
+    } 
+    else {
+        response.sendRedirect("login.jsp");
+    }   
+%>
