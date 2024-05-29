@@ -76,7 +76,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         Integer userId = (Integer) session.getAttribute("userId");
 
         if (userId != null) {
-            // Use o userId para buscar dados do usuário e mostrar no perfil
-        } else {
+        
+        } 
+        else {
             response.sendRedirect("login.jsp");
         }   %>

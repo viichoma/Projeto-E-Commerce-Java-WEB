@@ -12,15 +12,16 @@ import java.sql.SQLException;
  * @author unico
  */
 public class UsuarioDAO {
+    
+    //Método para gravar um usuario no Banco de Dados
     public boolean gravar(UsuarioVO user) {
             try {
-            Connection con = new Conexao().estabeleceConexao();
+            Connection con = new Conexao().estabeleceConexao(); // Estabelece conexão com o BD
             if (con != null)
             {
-            PreparedStatement ps;
+            PreparedStatement ps; // Estrutura o sql
             String sql = "insert into usuario (DS_NOME, DS_EMAIL, DS_SENHA) values ( ?, ?, ?)";
-            ps = con.prepareStatement(sql);
-            
+            ps = con.prepareStatement(sql);  // Prepara uma declaração SQL para execução em um banco de dados.
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getEmail());
             ps.setString(3, user.getPassword());
@@ -44,12 +45,12 @@ public class UsuarioDAO {
         try {
         con = new Conexao().estabeleceConexao();
         if(con != null) {
-            String sql = "select 1 from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
-            ps = con.prepareStatement(sql);
+            String sql = "select 1 from usuario where DS_EMAIL = ? and DS_SENHA = ? "; // SQL buscando retorno onde email e senha igual aos parametros
+            ps = con.prepareStatement(sql); // Prepara uma declaração SQL para execução em um banco de dados.
             ps.setString(1, email);
             ps.setString(2, senha);
-            rs = ps.executeQuery();
-            return rs.next();
+            rs = ps.executeQuery(); // Executa a consulta SQL preparada anteriormente e armazena o resultado
+            return rs.next(); // Retorna resultado da consulta
         }
         }  catch (SQLException erro) {
         System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());

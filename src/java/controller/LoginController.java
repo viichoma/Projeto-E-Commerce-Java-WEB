@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    // Checar função que deve ocorrer ao dar submit
+    // Checar função que deve ocorrer
     String acao = request.getParameter("acao");
         if (acao != null) {
         switch (acao) {
@@ -61,20 +61,21 @@ public class LoginController extends HttpServlet {
                 UsuarioDAO uDAO = new UsuarioDAO();
                 String email = user.getEmail();
                 String senha = user.getPassword();
-                
+                //Pegar os do usuario que logou
                 Integer userID = uDAO.getID(email, senha);
                 String username = uDAO.getUsername(email, senha);
                 
               //Se login tiver sucesso, vai para a pagina inicial logada, senão vai para o registro.  
+              // Verifica a função getID também, para caso o ID ficar nulo.
                 if(uDAO.login( email, senha ) && (userID != null) ){
-                    HttpSession session = request.getSession();
-                    session.setAttribute("userId", userID);
+                    HttpSession session = request.getSession(); //Pegar a sesão atual
+                    session.setAttribute("userId", userID); // Setar atributos à sessão
                     session.setAttribute("email", email);
                     session.setAttribute("username", username);
                     
-                 response.sendRedirect("logged.jsp");
+                    response.sendRedirect("logged.jsp"); // Encaminhar para logged.jsp caso tudo ocorra bem.
                 } else {
-                     response.sendRedirect("register.jsp");
+                    response.sendRedirect("register.jsp"); // Encaminhar para register.jsp caso tudo dê errado.
                 }
                 
 
@@ -88,18 +89,18 @@ public class LoginController extends HttpServlet {
             user.setUsername(request.getParameter("nome_profile"));
             user.setEmail(request.getParameter("email_profile"));
             user.setPassword(request.getParameter("senha_profile"));
-            HttpSession session = request.getSession();
-            user.setId((Integer) session.getAttribute("userId"));
+            
+            HttpSession session = request.getSession(); //Pegar a sesão atual
+            user.setId((Integer) session.getAttribute("userId")); // Setar atributos à sessão
             
             UsuarioDAO uDAO = new UsuarioDAO();
-            //Se o registro der certo, vai para o login, senão vai para a página inicial
+            //Se o update der certo, vai para a tela inicial, senão vai para a pagina de usuario
             if(uDAO.update(user)){
-                session = request.getSession();
-                session.setAttribute("username", user.getUsername());
+                session.setAttribute("username", user.getUsername()); // Setar os novos atributos à sessão
                 session.setAttribute("email", user.getEmail());
-                response.sendRedirect("user_profile.jsp");
+                response.sendRedirect("logged.jsp");
             }else{
-               response.sendRedirect("register.jsp"); 
+                response.sendRedirect("user_profile.jsp"); 
             }
         }
         
