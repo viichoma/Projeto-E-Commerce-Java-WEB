@@ -45,6 +45,9 @@ public class LoginController extends HttpServlet {
                 break;
             case "update":
                 UpdateUser(request, response);
+            case "excluir":
+                DelUser(request, response);
+                break;
             default:
                 break;
                       }
@@ -124,7 +127,19 @@ public class LoginController extends HttpServlet {
         }
     }
     
-    
+    protected void DelUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+             try (PrintWriter out = response.getWriter()) {
+                UsuarioDAO user = new UsuarioDAO();
+                HttpSession session = request.getSession(); //Pegar a sesão atual
+                int id = ((Integer) session.getAttribute("userId")); // Setar atributos à sessão
+                
+            if(user.ExcluirConta(id)){
+                response.sendRedirect("index.html");
+            }else{
+                response.sendRedirect("user_profile.jsp"); 
+            }
+        }
+    }    
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

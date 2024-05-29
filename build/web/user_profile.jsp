@@ -85,9 +85,23 @@
                     transform: translate(-50%, -50%);
                      width: 150px;
                      height: auto;
-                     "/>
-                <form action="LoginController" method="post" >
-                <input type="hidden" name="acao" value="delete">
+                     "/><br><br>
+
+                <a href="">
+                    <img src="imagens/log-out.svg" alt="alt" 
+                    title="Sair da conta"
+                    style="
+                     
+                    position: absolute;
+                    top: 90%;
+                    left: 8%;
+                    transform: translate(-50%, -50%);
+                    width: 60px;
+                    height: auto;
+                    "/>
+                </a>
+                
+                <a href="LoginController?acao=excluir&id=<%= session.getAttribute("userId") %>">
                 <img src="imagens/delete_user.webp" alt="alt" 
                     title="Excluir usuario"
                     style="
@@ -99,11 +113,7 @@
                     width: 60px;
                     height: auto;
                     "/>
-                                    <a href="#" onclick="<% session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }%>;">Deslogar</a>
-                </form>
+                </a>
             </div>
         </div>
     </body>

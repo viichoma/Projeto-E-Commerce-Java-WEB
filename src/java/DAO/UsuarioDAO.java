@@ -163,6 +163,39 @@ public class UsuarioDAO {
     
     return null;
     }
-
+ 
+        public boolean ExcluirConta(int id){
+        Connection con = null; //conexão com o bd
+        PreparedStatement ps = null; // estrutura o sql
+        ResultSet rs = null; //armazenará o resultado do bd
+        try {
+        con = new Conexao().estabeleceConexao();
+        if(con != null) {
+            String sql = "delete from usuario where CD_USUARIO = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            if(ps.executeUpdate()!=0){
+                    con.close();
+                    return true;
+                }
+        }
+        }
+        catch (SQLException erro) {
+        System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
+        
+    } finally {
+        // Fechando conexões e recursos
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            System.err.print("Erro ao fechar conexão: " + e.getMessage());
+        }
+    }
+    
+    return false;
+    }    
+    
 }
 

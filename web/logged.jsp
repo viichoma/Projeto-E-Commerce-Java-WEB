@@ -16,7 +16,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
     if (userId != null) {
         // Aqui você pode adicionar lógica para o usuário autenticado
-        // Por exemplo, exibir uma mensagem de boas-vindas ou carregar dados do usuário
+        // Por exemplo, exibir uma mensagem de boas-vindas ou carregar dados do usuário     
+    } 
+    else {
+        response.sendRedirect("login.jsp");
+    }   
 %>
 
 <html>
@@ -82,9 +86,3 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </body>
 </html>
 
-<%      
-    } 
-    else {
-        response.sendRedirect("login.jsp");
-    }   
-%>
