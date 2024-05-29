@@ -44,14 +44,13 @@ public class UsuarioDAO {
         try {
         con = new Conexao().estabeleceConexao();
         if(con != null) {
-        String sql = "select CD_USUARIO from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
-        ps = con.prepareStatement(sql);
-        ps.setString(1, email);
-        ps.setString(2, senha);
-        rs = ps.executeQuery();
-        return rs.next();
+            String sql = "select 1 from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, senha);
+            rs = ps.executeQuery();
+            return rs.next();
         }
-        
         }  catch (SQLException erro) {
         System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
         return false;
@@ -65,7 +64,6 @@ public class UsuarioDAO {
             System.err.print("Erro ao fechar conexão: " + e.getMessage());
         }
     }
-    
     return false;
     }
     
@@ -74,13 +72,14 @@ public class UsuarioDAO {
             Connection con = new Conexao().estabeleceConexao();
             if (con != null)
             {
-            PreparedStatement ps;
-            String sql = "update usuario set DS_NOME = ?, DS_EMAIL = ?, DS_SENHA = ? where DS_EMAIL = ?";
-            ps = con.prepareStatement(sql);
-            ps.setString(1, user.getUsername());
-            ps.setString(2, user.getEmail());
-            ps.setString(3, user.getPassword());
-            ps.setString(4, user.getEmail());
+                PreparedStatement ps;
+                String sql = "update usuario set DS_NOME = ?, DS_EMAIL = ?, DS_SENHA = ? where CD_USUARIO = ?";
+                ps = con.prepareStatement(sql);
+                ps.setString(1, user.getUsername());
+                ps.setString(2, user.getEmail());
+                ps.setString(3, user.getPassword());
+                ps.setString(4, String.valueOf(user.getId()));
+
             if (ps.executeUpdate() != 0) {
                     System.out.println("Sucesso ao atualizar");
                 } else {
@@ -102,13 +101,13 @@ public class UsuarioDAO {
         try {
         con = new Conexao().estabeleceConexao();
         if(con != null) {
-        String sql = "select CD_USUARIO from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
-        ps = con.prepareStatement(sql);
-        ps.setString(1, email);
-        ps.setString(2, senha);
-        rs = ps.executeQuery();
+            String sql = "select CD_USUARIO from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, senha);
+            rs = ps.executeQuery();
         if (rs.next()) {
-        return rs.getInt("CD_USUARIO");
+            return rs.getInt("CD_USUARIO");
                         }
         }
         }
@@ -128,5 +127,41 @@ public class UsuarioDAO {
     
     return null;
     }
+        
+    public String getUsername(String email, String senha){
+        Connection con = null; //conexão com o bd
+        PreparedStatement ps = null; // estrutura o sql
+        ResultSet rs = null; //armazenará o resultado do bd
+        String username = null;
+        try {
+        con = new Conexao().estabeleceConexao();
+        if(con != null) {
+            String sql = "select DS_NOME from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, senha);
+            rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getString("DS_NOME");
+                        }
+        }
+        }
+        catch (SQLException erro) {
+        System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
+        
+    } finally {
+        // Fechando conexões e recursos
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            System.err.print("Erro ao fechar conexão: " + e.getMessage());
+        }
+    }
+    
+    return null;
+    }
+
 }
 

@@ -26,7 +26,15 @@
             <!-- Conjunto de acessos de login e carrinho do site-->
                 <nav style="float: right; margin-right: 0px;">
                     <strong>
-                    <a href="user_profile.jsp" class="login">USERNAME</a>
+                    <a href="user_profile.jsp" class="login">
+                    <%
+                    String username = (String) session.getAttribute("username");
+                    if (username != null && !username.trim().isEmpty()) {
+                        String firstName = username.split(" ")[0];
+                        out.println(firstName);
+                    } else { out.println("Nome não disponível") ;}
+                    %>
+                    </a>
                     <a href="#" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>

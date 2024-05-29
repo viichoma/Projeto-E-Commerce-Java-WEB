@@ -56,18 +56,22 @@ public class LoginController extends HttpServlet {
                 UsuarioVO user = new UsuarioVO();
                 user.setEmail(request.getParameter("email"));
                 user.setPassword(request.getParameter("senha"));
+                
                 //Pegar os dados que serão checados no BD para logar
                 UsuarioDAO uDAO = new UsuarioDAO();
                 String email = user.getEmail();
                 String senha = user.getPassword();
                 
                 Integer userID = uDAO.getID(email, senha);
- 
+                String username = uDAO.getUsername(email, senha);
                 
               //Se login tiver sucesso, vai para a pagina inicial logada, senão vai para o registro.  
                 if(uDAO.login( email, senha ) && (userID != null) ){
                     HttpSession session = request.getSession();
                     session.setAttribute("userId", userID);
+                    session.setAttribute("email", email);
+                    session.setAttribute("username", username);
+                    
                  response.sendRedirect("logged.jsp");
                 } else {
                      response.sendRedirect("register.jsp");
@@ -82,13 +86,18 @@ public class LoginController extends HttpServlet {
             //Pegar os dados do usuario que serão gravados e armazenados no BD
             UsuarioVO user = new UsuarioVO();
             user.setUsername(request.getParameter("nome_profile"));
-            user.setEmail(request.getParameter("oldemail_profile"));
-            user.setPassword(request.getParameter("SenhaNova_profile"));
+            user.setEmail(request.getParameter("email_profile"));
+            user.setPassword(request.getParameter("senha_profile"));
+            HttpSession session = request.getSession();
+            user.setId((Integer) session.getAttribute("userId"));
             
             UsuarioDAO uDAO = new UsuarioDAO();
             //Se o registro der certo, vai para o login, senão vai para a página inicial
             if(uDAO.update(user)){
-               response.sendRedirect("user_profile.jsp");
+                session = request.getSession();
+                session.setAttribute("username", user.getUsername());
+                session.setAttribute("email", user.getEmail());
+                response.sendRedirect("user_profile.jsp");
             }else{
                response.sendRedirect("register.jsp"); 
             }
@@ -112,7 +121,6 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("index.html"); 
             }
         }
-        
     }
     
     

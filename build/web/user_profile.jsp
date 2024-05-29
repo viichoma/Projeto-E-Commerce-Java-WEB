@@ -25,7 +25,15 @@
             <!-- Conjunto de acessos de login e carrinho do site-->
                 <nav style="float: right; margin-right: 20px;">
                     <strong>
-                    <a href="#" class="login">USERNAME</a>
+                    <a href="user_profile.jsp" class="login">
+                    <%
+                    String username = (String) session.getAttribute("username");
+                    if (username != null && !username.trim().isEmpty()) {
+                        String firstName = username.split(" ")[0];
+                        out.println(firstName);
+                    } else { out.println("Nome não disponível") ;}
+                    %>
+                    </a>
                     <a href="#" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
@@ -63,10 +71,9 @@
             <input type="hidden" name="acao" value="update">
             <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Meu Perfil</h1>
             <p>Altere os campos caso queira alterar seus dados:</p>
-            <input type="text" name="nome_profile" placeholder="Nome" required class="login_input"><br><br>
-            <input type="text" name="email_profile" placeholder="E-mail Novo" required class="login_input"><br><br>
-            <input type="password" name="senha_profile" placeholder="Senha atual" required class="login_input"><br><br>
-            <input type="password" name="SenhaNova_profile" placeholder="Nova senha" required class="login_input"><br><br>
+            <br><input type="text" name="nome_profile" placeholder="Nome" required value="<% out.println( session.getAttribute("username"));%>"  class="login_input"><br><br>
+            <input type="text" name="email_profile" placeholder="E-mail" required value="<% out.println( session.getAttribute("email"));%>" class="login_input"><br><br>
+            <input type="password" name="senha_profile" placeholder="Nova senha" required class="login_input"><br><br>
             <input type="submit" class="submit_input" value="Alterar">
 
             
@@ -79,19 +86,30 @@
                      width: 150px;
                      height: auto;
                      "/>
-                
+                <form action="LoginController" method="post" >
+                <input type="hidden" name="acao" value="delete">
                 <img src="imagens/delete_user.webp" alt="alt" 
                     title="Excluir usuario"
                     style="
                      
                     position: absolute;
                     top: 90%;
-                    left: 91%;
+                    left: 90%;
                     transform: translate(-50%, -50%);
                     width: 60px;
                     height: auto;
-                     "/>
+                    "/>
+                </form>
             </div>
         </div>
     </body>
 </html>
+
+<%      session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        if (userId != null) {
+            // Use o userId para buscar dados do usuário e mostrar no perfil
+        } else {
+            response.sendRedirect("login.jsp");
+        }   %>
