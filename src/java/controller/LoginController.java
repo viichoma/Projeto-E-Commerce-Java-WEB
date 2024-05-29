@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +39,6 @@ public class LoginController extends HttpServlet {
         switch (acao) {
             case "logar":
                 LoginUser(request, response);
-                //getUserID(request, response);
                 break;
             case "register":
                 RegUser(request, response);
@@ -60,12 +60,20 @@ public class LoginController extends HttpServlet {
                 UsuarioDAO uDAO = new UsuarioDAO();
                 String email = user.getEmail();
                 String senha = user.getPassword();
+                
+                Integer userID = uDAO.getID(email, senha);
+ 
+                
               //Se login tiver sucesso, vai para a pagina inicial logada, senão vai para o registro.  
-                if(uDAO.login( email, senha )){
-                response.sendRedirect("logged.jsp");
+                if(uDAO.login( email, senha ) && (userID != null) ){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("userId", userID);
+                 response.sendRedirect("logged.jsp");
                 } else {
-                    response.sendRedirect("register.jsp");
-                } 
+                     response.sendRedirect("register.jsp");
+                }
+                
+
             }   
     }
     // Função de registrar usuario
@@ -99,26 +107,16 @@ public class LoginController extends HttpServlet {
             UsuarioDAO uDAO = new UsuarioDAO();
             //Se o registro der certo, vai para o login, senão vai para a página inicial
             if(uDAO.gravar(user)){
-               response.sendRedirect("login.jsp");
+                response.sendRedirect("login.jsp");
             }else{
-               response.sendRedirect("index.html"); 
+                response.sendRedirect("index.html"); 
             }
         }
         
     }
     
     
-    /*   protected void getUserID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-             try (PrintWriter out = response.getWriter()) {
-                 String email = "vi";
-                 String senha = "vi123";
-                 UsuarioDAO user = new UsuarioDAO();
-                int userId = user.getID(email, senha);
-                request.setAttribute("userId", userId);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("user_profile.jsp");
-        }
-        
-    } */
+
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

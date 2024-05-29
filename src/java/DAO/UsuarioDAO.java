@@ -94,7 +94,7 @@ public class UsuarioDAO {
          return true;
    }    
  
-    /*    public Integer getID(String email, String senha){
+        public Integer getID(String email, String senha){
         Connection con = null; //conexão com o bd
         PreparedStatement ps = null; // estrutura o sql
         ResultSet rs = null; //armazenará o resultado do bd
@@ -108,7 +108,7 @@ public class UsuarioDAO {
         ps.setString(2, senha);
         rs = ps.executeQuery();
         if (rs.next()) {
-        userId = rs.getInt("CD_USUARIO");
+        return rs.getInt("CD_USUARIO");
                         }
         }
         }
@@ -126,7 +126,7 @@ public class UsuarioDAO {
         }
     }
     
-    return userId;
-    } */
+    return null;
+    }
 }
 
