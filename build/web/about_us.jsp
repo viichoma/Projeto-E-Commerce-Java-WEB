@@ -3,6 +3,10 @@
     Created on : 27 de mai. de 2024, 21:42:19
     Author     : unico
 --%>
+<%      
+    session = request.getSession();
+    Integer userId = (Integer) session.getAttribute("userId");
+%> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,10 +36,10 @@
                     if (username != null && !username.trim().isEmpty()) {
                         String firstName = username.split(" ")[0];
                         out.println(firstName);
-                    } else { out.println("Nome não disponível") ;}
+                    } else { out.println("Login") ;}
                     %>
                     </a>
-                    <a href="#" class="carrinho">Carrinho</a>
+                    <a href="cart.jsp" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
             
@@ -43,7 +47,17 @@
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
+                   <%
+                        if (userId != null) { 
+                    %>
                         <a href="logged.jsp" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <%
+                        } else { 
+                    %>
+                        <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <%
+                        }
+                    %> 
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>

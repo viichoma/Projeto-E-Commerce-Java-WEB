@@ -112,5 +112,19 @@ input:focus {
     background-color: #7a98e4;
 }
 
+.list_products {
+    width: 1500px;height: auto; min-height: 300px; border: 0px solid black;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+.view_product {
+    width: 1000px;height: auto; min-height: 300px; border: 0px solid black; display: flex; flex-direction: row;;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 /*--------[]--------*/

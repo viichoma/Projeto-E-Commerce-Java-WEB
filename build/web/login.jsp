@@ -25,7 +25,7 @@
                 <nav style="float: right; margin-right: 20px;">
                     <strong>
                     <a href="login.jsp" class="login">Login</a>
-                    <a href="#" class="carrinho">Carrinho</a>
+                    <a href="cart.jsp" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
             
@@ -56,10 +56,5 @@
             
             </form>
         </div>
-        
-        
-        
-        
-        
     </body>
 </html>

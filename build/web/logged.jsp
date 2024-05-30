@@ -15,13 +15,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     Integer userId = (Integer) session.getAttribute("userId");
 
     if (userId != null) {
-        // Aqui você pode adicionar lógica para o usuário autenticado
-        // Por exemplo, exibir uma mensagem de boas-vindas ou carregar dados do usuário     
-    } 
-    else {
-        response.sendRedirect("login.jsp");
-    }   
+
 %>
+
 
 <html>
     <head>
@@ -52,7 +48,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     } else { out.println("Nome não disponível") ;}
                     %>
                     </a>
-                    <a href="#" class="carrinho">Carrinho</a>
+                    <a href="cart.jsp" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
             
@@ -69,12 +65,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div> 
         </div>
         </header>
-       <div style="width: 1500px;height: auto; min-height: 300px; border: 0px solid black;
-                    position: absolute;
-                    top: 40%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                     ">
+                    
+       <div class="list_products">
            <div style="width: 200px; height: auto;">
                <a href="view_product.jsp">
                <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
@@ -86,3 +78,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </body>
 </html>
 
+<%  
+    } 
+    else {
+        response.sendRedirect("login.jsp");
+    }   
+%>

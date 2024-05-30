@@ -4,6 +4,14 @@
     Author     : unico
 --%>
 
+<%      
+    session = request.getSession();
+    Integer userId = (Integer) session.getAttribute("userId");
+
+    if (userId != null) {
+
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +42,7 @@
                     } else { out.println("Nome não disponível") ;}
                     %>
                     </a>
-                    <a href="#" class="carrinho">Carrinho</a>
+                    <a href="cart.jsp" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
             
@@ -87,7 +95,7 @@
                      height: auto;
                      "/><br><br>
 
-                <a href="">
+                <a href="LoginController?acao=deslogar">
                     <img src="imagens/log-out.svg" alt="alt" 
                     title="Sair da conta"
                     style="
@@ -119,3 +127,9 @@
     </body>
 </html>
 
+<%  
+    } 
+    else {
+        response.sendRedirect("login.jsp");
+    }   
+%>

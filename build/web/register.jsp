@@ -25,7 +25,7 @@
                 <nav style="float: right; margin-right: 20px;">
                     <strong>
                     <a href="login.jsp" class="login">Login</a>
-                    <a href="#" class="carrinho">Carrinho</a>
+                    <a href="cart.jsp" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
             
@@ -55,15 +55,9 @@
             <input type="password" name="senha" placeholder="Senha" required class="login_input"><br><br>
             <input type="password" name="ConfSenha" placeholder="Confrimar senha" required class="login_input"><br><br>
             <input type="submit" class="submit_input" >
-            
+         
             <p><a href="login.jsp">Voltar</a></p>
-            
+       
             </form>
-
         </div>
-        
-        
-        
-        
-        
 </html>

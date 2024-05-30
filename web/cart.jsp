@@ -4,6 +4,13 @@
     Author     : unico
 --%>
 
+<%      
+    session = request.getSession();
+    Integer userId = (Integer) session.getAttribute("userId");
+
+    if (userId != null) {
+
+%> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,7 +49,17 @@
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                    <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                   <%
+                        if (userId != null) { 
+                    %>
+                        <a href="logged.jsp" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <%
+                        } else { 
+                    %>
+                        <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <%
+                        }
+                    %> 
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
@@ -104,3 +121,9 @@
     </body>
     
 </html>
+<%  
+    } 
+    else {
+        response.sendRedirect("login.jsp");
+    }   
+%>

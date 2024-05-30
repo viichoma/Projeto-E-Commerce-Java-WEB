@@ -4,6 +4,11 @@
     Author     : unico
 --%>
 
+<%      
+    session = request.getSession();
+    Integer userId = (Integer) session.getAttribute("userId");
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,10 +37,10 @@
                     if (username != null && !username.trim().isEmpty()) {
                         String firstName = username.split(" ")[0];
                         out.println(firstName);
-                    } else { out.println("Nome não disponível") ;}
+                    } else { out.println("Login") ;}
                     %>
                     </a>
-                    <a href="#" class="carrinho">Carrinho</a>
+                    <a href="cart.jsp" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
             
@@ -43,7 +48,17 @@
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
+                    <%
+                        if (userId != null) { 
+                    %>
                         <a href="logged.jsp" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <%
+                        } else { 
+                    %>
+                        <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <%
+                        }
+                    %> 
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
@@ -52,12 +67,7 @@
             </div> 
         </div>
         </header>
-       <div style="width: 1000px;height: auto; min-height: 300px; border: 0px solid black; display: flex; flex-direction: row;;
-                    position: absolute;
-                    top: 58%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                     ">
+       <div class="view_product">
            <div style="width: 600px; height: auto;">
                <img style="width: 500px; height: auto; border-radius: 5px;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
            </div>
@@ -65,12 +75,12 @@
                 <pre style="font-weight: 800; font-size: 20px">Jaqueta de corrida Ferrari<h2 style="">RS$ 500,00</h2></pre>
                 <form action="" style="display: flex; flex-direction: column; align-items: center;">
                     <div style="display: flex; justify-content: center; gap: 10px;">
-                    <input type="radio" id="size_P" name="size" value="P">
-                    <label for="size_P"> P </label>
-                    <input type="radio" id="size_M" name="size" value="M">
-                    <label for="size_M"> M </label>
-                    <input type="radio" id="size_G" name="size" value="G">
-                    <label for="size_G"> G </label>
+                        <input type="radio" id="size_P" name="size" value="P">
+                        <label for="size_P"> P </label>
+                        <input type="radio" id="size_M" name="size" value="M">
+                        <label for="size_M"> M </label>
+                        <input type="radio" id="size_G" name="size" value="G">
+                        <label for="size_G"> G </label>
                     </div><br><br>
                     <label for="product_quant"> Quantidade </label><br>
                     <input type="number" id="" name="product_quant" value="1" style="width: 80px; text-align: center;"><br><br>
