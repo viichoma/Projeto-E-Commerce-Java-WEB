@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.4.28-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.4.32-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
--- HeidiSQL Versão:              12.6.0.6765
+-- HeidiSQL Versão:              12.7.0.6850
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -14,55 +14,19 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Copiando dados para a tabela projetojava.item_pedido: ~0 rows (aproximadamente)
 
--- Copiando estrutura do banco de dados para projetojava
-CREATE DATABASE IF NOT EXISTS `projetojava` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
-USE `projetojava`;
+-- Copiando dados para a tabela projetojava.pedido: ~0 rows (aproximadamente)
 
--- Copiando estrutura para tabela projetojava.item_pedido
-CREATE TABLE IF NOT EXISTS `item_pedido` (
-  `CD_PEDIDO` int(11) DEFAULT NULL,
-  `CD_PRODUTO` int(11) DEFAULT NULL,
-  `VL_PRECO` double DEFAULT NULL,
-  `QT_QUANTIDADE` double DEFAULT NULL,
-  `VL_PRECO_TOTAL` double DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- Copiando dados para a tabela projetojava.produto: ~1 rows (aproximadamente)
+INSERT INTO `produto` (`CD_PRODUTO`, `DS_NOME`, `DS_PRODUTO`, `VL_PRECO`, `DS_TAMANHO`, `DS_CATEGORIA`, `DS_GENERO`, `QT_QUANTIDADE`, `DS_IMG`) VALUES
+	(2, 'Jaqueta Ferrari', 'Jaqueta de corrida Ferrari feita de couro sintétic', 500, 'M', 'ROUPA', 'M', 10, 'FERRARI-JACKET.webp');
 
--- Exportação de dados foi desmarcado.
-
--- Copiando estrutura para tabela projetojava.pedido
-CREATE TABLE IF NOT EXISTS `pedido` (
-  `CD_PEDIDO` int(11) NOT NULL,
-  `CD_USUARIO` int(11) NOT NULL,
-  `VL_TOTAL` double NOT NULL DEFAULT 0,
-  PRIMARY KEY (`CD_PEDIDO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Exportação de dados foi desmarcado.
-
--- Copiando estrutura para tabela projetojava.produto
-CREATE TABLE IF NOT EXISTS `produto` (
-  `CD_PRODUTO` int(11) NOT NULL AUTO_INCREMENT,
-  `DS_PRODUTO` varchar(50) NOT NULL DEFAULT '',
-  `VL_PRECO` double NOT NULL DEFAULT 0,
-  `DS_TAMANHO` varchar(50) NOT NULL DEFAULT '0',
-  `DS_CATEGORIA` varchar(50) DEFAULT NULL,
-  `DS_GENERO` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`CD_PRODUTO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Exportação de dados foi desmarcado.
-
--- Copiando estrutura para tabela projetojava.usuario
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `CD_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
-  `DS_NOME` varchar(50) NOT NULL,
-  `DS_EMAIL` varchar(50) NOT NULL,
-  `DS_SENHA` varchar(50) NOT NULL,
-  PRIMARY KEY (`CD_USUARIO`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- Exportação de dados foi desmarcado.
+-- Copiando dados para a tabela projetojava.usuario: ~3 rows (aproximadamente)
+INSERT INTO `usuario` (`CD_USUARIO`, `DS_NOME`, `DS_EMAIL`, `DS_SENHA`) VALUES
+	(6, 'Vinicius', 'vinicius@outlook.com', 'vi123'),
+	(7, 'vi', 'vi', 'vi'),
+	(8, 'Vinicius Woicikieviz Choma', 'vinicius.choma@outlook.com', '123');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
