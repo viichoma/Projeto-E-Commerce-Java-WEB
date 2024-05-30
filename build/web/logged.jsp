@@ -4,6 +4,8 @@
     Author     : unico
 --%>
 
+<%@page import="VO.ProdutoVO"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <!--
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -73,6 +75,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                <pre style="font-weight: 800; font-size: 14px">Jaqueta de corrida Ferrari.<br>RS$ 500</pre>
                </a>
            </div>
+           <% out.print("<td><a href=\"ProductController?acao=listar\">Listar</a></td>");%>
+                   <%
+            List produtos = (List) request.getAttribute("lista");
+            if (produtos != null) {
+                out.print("Achados: " + produtos.size() + "<br><br><br>");
+                out.print("<table width=\"50%\" border=\"1\" cellspacing=\"0\" align=\"center\">");
+                for (int cont = 0; cont < produtos.size(); cont++) {
+                    ProdutoVO p = new ProdutoVO();
+                    p = (ProdutoVO) produtos.get(cont);
+                    out.print("<tr>");
+out.print("<td><img style=\"width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"imagens/" + p.getDs_img() + "\" alt=\"alt\"/></td>");
+                    out.print("<td>" + p.getDs_img()+ "</td>");
+                    out.print("<td>" + p.getNome()+ "</td>");
+                    out.print("<td>" + p.getPreco()+ "</td>");
+
+
+                    //out.print("<td><a href=\"ProdutoController?operacao=2&id="+p.getId()+"\">Listar</a></td>");
+                    //out.print("<td><a href=\"ProdutoController?operacao=3&id="+p.getId()+"\">Alterar</a></td>");
+                    out.print("</tr>");
+                }
+                out.print("</table>");
+            }            
+        %>
+           
+           
+           
+           
        </div>
 
     </body>
