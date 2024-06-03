@@ -15,6 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 <%      
     session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
+    String userEmail = (String) session.getAttribute("email");
 
     if (userId != null) {
 
@@ -52,7 +53,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
                     
                     <%
-                        if (userId == 9) {
+                        if (userEmail.equals("vi@admin.com")) {
                         out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
                         }
                     %>

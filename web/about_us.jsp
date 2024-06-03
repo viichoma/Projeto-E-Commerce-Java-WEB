@@ -6,6 +6,7 @@
 <%      
     session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
+    String userEmail = (String) session.getAttribute("email");
 %> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -42,10 +43,10 @@
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
                       
                     <%
-                        if (userId == 9) {
+                        if (userEmail.equals("vi@admin.com")) {
                         out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
                         }
-                    %>                  
+                    %>                
 
                     </strong>
                 </nav>

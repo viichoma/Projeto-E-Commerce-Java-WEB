@@ -7,8 +7,8 @@
 <%      
     session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
-
-    if (userId == 9) {
+    String userEmail = (String) session.getAttribute("email");
+    if (userEmail.equals("vi@admin.com")) {
 
 %>
 
