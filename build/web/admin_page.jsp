@@ -1,6 +1,6 @@
 <%-- 
-    Document   : user_profile
-    Created on : 6 de mai. de 2024, 21:59:32
+    Document   : admin_page
+    Created on : 3 de jun. de 2024, 13:02:13
     Author     : unico
 --%>
 
@@ -8,7 +8,7 @@
     session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
 
-    if (userId != null) {
+    if (userId == 9) {
 
 %>
 
@@ -22,6 +22,27 @@
         <link rel="stylesheet" href="styles.css">
         <link rel="shortcut icon" type="imagex/png" href="./imagens/site_icon.ico">
     </head>
+    <style>
+                .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+        .form-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .form-column {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
     <body>
        <!-- Cabeçalho com o MenuGeral presente em todo o site -->
 <header>
@@ -65,8 +86,7 @@
             </div> 
         </div>
         </header>
-       
-               <!-- Formulario de registro que leva os dados a controloadora LoginController -->
+                    
         <div style="
              position: absolute;
             top: 50%;
@@ -80,56 +100,32 @@
              width: 800px;
              ">
             <div style="text-align: center">
-            <form action="LoginController" method="post">
-            <!-- Se a ação for register, o LoginController efetua a funçao de gravar -->
-            <input type="hidden" name="acao" value="update">
-            <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Meu Perfil</h1>
-            <p>Altere os campos caso queira alterar seus dados:</p>
-            <br><input type="text" name="nome_profile" placeholder="Nome" required value="<% out.println( session.getAttribute("username"));%>"  class="login_input"><br><br>
-            <input type="text" name="email_profile" placeholder="E-mail" required value="<% out.println( session.getAttribute("email"));%>" class="login_input"><br><br>
-            <input type="password" name="senha_profile" placeholder="Nova senha" required class="login_input"><br><br>
-            <input type="submit" class="submit_input" value="Alterar">
-
-            
-            </form>
-                <img src="imagens/user_icon.png" alt="alt" style="
-                    position: absolute;
-                    top: 35%;
-                    left: 15%;
-                    transform: translate(-50%, -50%);
-                     width: 150px;
-                     height: auto;
-                     "/><br><br>
-
-                <a href="LoginController?acao=deslogar">
-                    <img src="imagens/log-out.svg" alt="alt" 
-                    title="Sair da conta"
-                    style="
-                     
-                    position: absolute;
-                    top: 90%;
-                    left: 8%;
-                    transform: translate(-50%, -50%);
-                    width: 60px;
-                    height: auto;
-                    "/>
-                </a>
+                <form action="" method="post">
+                <!-- Se a ação for register, o LoginController efetua a funçao de gravar -->
+                <input type="hidden" name="acao" value="update">
                 
-                <a href="LoginController?acao=excluir&id=<%= session.getAttribute("userId") %>">
-                <img src="imagens/delete_user.webp" alt="alt" 
-                    title="Excluir usuario"
-                    style="
-                     
-                    position: absolute;
-                    top: 90%;
-                    left: 90%;
-                    transform: translate(-50%, -50%);
-                    width: 60px;
-                    height: auto;
-                    "/>
-                </a>
+                <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Adicionar Produto</h1>
+                <p>Preencha os dados para adicionar um produto novo:</p><br>
+                
+            <div class="form-container">
+                <div class="form-column">
+                    <input type="text" name="nome_produto" placeholder="Nome do produto" required class="login_input">
+                    <input type="text" name="ds_produto" placeholder="Descrição do produto" required class="login_input">
+                    <input type="number" name="preco_produto" placeholder="Preço do produto" required class="login_input">
+                    <input type="text" name="tamanho_produto" placeholder="Tamanho do produto" required class="login_input">
+                </div>
+                <div class="form-column">
+                    <input type="text" name="categoria_produto" placeholder="Categoria do produto" required class="login_input">
+                    <input type="text" name="genero_produto" placeholder="Gênero do produto" required class="login_input">
+                    <input type="number" name="qnt_produto" placeholder="Quantidade" required class="login_input">
+                    <input type="file" name="imagem_produto" id="" accept=".jpeg, .jpg, .png, .webp">
+                </div>
+  
             </div>
+                <br><br><input type="submit" class="submit_input">
+                </form> 
         </div>
+
     </body>
 </html>
 

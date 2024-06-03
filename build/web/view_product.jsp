@@ -23,14 +23,14 @@
     <body>
        <!-- Cabeçalho com o MenuGeral presente em todo o site -->
        
-        <header>
+<header>
         <div id="MenuGeral" class="" >
             <div id="menu_logo">
                 <img src="imagens/site_logo.png" alt="alt" class="menu_logo"/>
             </div>
             <br>
             <!-- Conjunto de acessos de login e carrinho do site-->
-                <nav style="float: right; margin-right: 0px;">
+                <nav style="float: right; margin-right: 10px;">
                     <strong>
                     <a href="user_profile.jsp" class="login">
                     <%
@@ -38,10 +38,16 @@
                     if (username != null && !username.trim().isEmpty()) {
                         String firstName = username.split(" ")[0];
                         out.println(firstName);
-                    } else { out.println("Login") ;}
+                    } else { out.println("Nome não disponível") ;}
                     %>
                     </a>
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
+                    <%
+                        if (userId == 9) {
+                        out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
+                        }
+                    %>
+
                     </strong>
                 </nav>
             
@@ -49,7 +55,7 @@
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                    <a href="ProductController?acao=listar" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <a href="ProductController?acao=listar" style="margin-left: 310px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="about_us.jsp" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
@@ -58,6 +64,7 @@
             </div> 
         </div>
         </header>
+                    
        <div class="view_product">
            <div style="width: 600px; height: auto;">
                <img style="width: 500px; height: auto; border-radius: 5px;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>

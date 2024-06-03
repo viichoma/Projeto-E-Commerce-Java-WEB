@@ -38,7 +38,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div>
             <br>
             <!-- Conjunto de acessos de login e carrinho do site-->
-                <nav style="float: right; margin-right: 0px;">
+                <nav style="float: right; margin-right: 10px;">
                     <strong>
                     <a href="user_profile.jsp" class="login">
                     <%
@@ -50,6 +50,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     %>
                     </a>
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
+                    <%
+                        if (userId == 9) {
+                        out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
+                        }
+                    %>
+
                     </strong>
                 </nav>
             
@@ -57,7 +63,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                    <a href="ProductController?acao=listar" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <a href="ProductController?acao=listar" style="margin-left: 310px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="about_us.jsp" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
@@ -68,32 +74,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </header>
                     
        <div class="list_products">
-        <!--   
-           <table>
 
-               <tr>
-                   <td>
-           <div style="width: 200px; height: auto; margin-right: 100px;">
-               <a href="view_product.jsp">
-               <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE; border: 1px solid #8DA8EE;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
-               <pre style="font-weight: 800; font-size: 14px">Jaqueta de corrida Ferrari.<br>RS$ 500</pre>
-               </a>
-           </div>
-                    </td>
-                    <td>
-               <div style="width: 200px; height: auto; margin-right: 100px;">
-               <a href="view_product.jsp">
-               <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE; border: 1px solid #8DA8EE;" src="imagens/NIKE-PARACHUTE-PANTS.webp" alt="alt"/>
-               <pre style="font-weight: 800; font-size: 14px">Jaqueta de corrida Ferrari.<br>RS$ 500</pre>
-               </a>
-                    </div>
-                    </td>
-
-           </tr>
-           </table>
-            -->
-           <!-- <% //out.print("<td><a href=\"ProductController?acao=listar\">Listar</a></td>");%>  -->
- 
                    <%
             //out.print("<div class=\"list_products\">");           
             List produtos = (List) request.getAttribute("lista");
