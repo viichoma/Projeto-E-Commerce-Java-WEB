@@ -59,7 +59,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     <strong>
                     <a href="ProductController?acao=listar" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
-                    <a href="#" style="margin-right: 40px;">Sobre nós</a>
+                    <a href="about_us.jsp" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
                 </nav>
                 <br>
@@ -112,7 +112,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     out.print("<td>");
                     out.print("<div style='width: 200px; height: auto; margin-right: 100px;'>");
                         out.print("<a href='view_product.jsp'>");
-                        out.print("<img style=\"width: 210px; height: 315px; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"imagens/" + p.getDs_img() + "\" alt=\"alt\"/>");
+                        out.print("<img style=\"width: 210px; height: 315px; border-radius: 5px; border: 1.7px solid #8DA8EE; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"imagens/" + p.getDs_img() + "\" alt=\"alt\"/>");
                         out.print("<pre style=\"font-weight: 800; font-size: 14px\">" + p.getNome()+ "<br>R$ " + p.getPreco()+ "</pre>");
                         out.print("</a>");
                     out.print("</div>");

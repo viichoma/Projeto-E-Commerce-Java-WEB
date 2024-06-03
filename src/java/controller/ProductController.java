@@ -45,9 +45,9 @@ public class ProductController extends HttpServlet {
 
                 // Encaminhar para a página adequada
                 if (userId != null) {
-                    request.getRequestDispatcher("/logged.jsp").forward(request, response);
+                    request.getRequestDispatcher("/homeOn.jsp").forward(request, response);
                 } else {
-                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+                    request.getRequestDispatcher("/homeOff.jsp").forward(request, response);
                 }
                 break;
             case "cadastrar":

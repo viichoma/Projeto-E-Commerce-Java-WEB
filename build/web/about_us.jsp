@@ -50,7 +50,7 @@
 
                     <a href="ProductController?acao=listar" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
-                    <a href="#" style="margin-right: 40px;">Sobre nós</a>
+                    <a href="about_us.jsp" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
                 </nav>
                 <br>
