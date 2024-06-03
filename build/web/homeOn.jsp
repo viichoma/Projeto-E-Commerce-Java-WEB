@@ -50,6 +50,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     %>
                     </a>
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
+                    
                     <%
                         if (userId == 9) {
                         out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");

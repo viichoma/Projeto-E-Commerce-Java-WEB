@@ -40,11 +40,12 @@
                     %>
                     </a>
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
+                      
                     <%
                         if (userId == 9) {
                         out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
                         }
-                    %>
+                    %>                  
 
                     </strong>
                 </nav>

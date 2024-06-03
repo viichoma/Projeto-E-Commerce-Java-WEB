@@ -36,7 +36,7 @@
                     if (username != null && !username.trim().isEmpty()) {
                         String firstName = username.split(" ")[0];
                         out.println(firstName);
-                    } else { out.println("Nome não disponível") ;}
+                    } else { out.println("Login") ;}
                     %>
                     </a>
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
