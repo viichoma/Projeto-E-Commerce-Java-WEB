@@ -100,9 +100,9 @@
              width: 800px;
              ">
             <div style="text-align: center">
-                <form action="" method="post">
+                <form action="ProductController" method="post">
                 <!-- Se a ação for register, o LoginController efetua a funçao de gravar -->
-                <input type="hidden" name="acao" value="update">
+                <input type="hidden" name="acao" value="cadastrar">
                 
                 <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Adicionar Produto</h1>
                 <p>Preencha os dados para adicionar um produto novo:</p><br>
@@ -118,6 +118,7 @@
                     <input type="text" name="categoria_produto" placeholder="Categoria do produto" required class="login_input">
                     <input type="text" name="genero_produto" placeholder="Gênero do produto" required class="login_input">
                     <input type="number" name="qnt_produto" placeholder="Quantidade" required class="login_input">
+                    <input type="text" name="img_produto" placeholder="Nome da imagem" required class="login_input">
                     <input type="file" name="imagem_produto" id="" accept=".jpeg, .jpg, .png, .webp">
                 </div>
   

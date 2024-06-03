@@ -51,7 +51,7 @@ public class ProductController extends HttpServlet {
                 }
                 break;
             case "cadastrar":
-
+                CadProduct(request, response);
                 break;
             case "atualizar":
 
@@ -107,6 +107,13 @@ public class ProductController extends HttpServlet {
             //Pegar os dados do usuario que serão gravados e armazenados no BD
             ProdutoVO product = new ProdutoVO();
             product.setNome(request.getParameter("nome_produto"));
+            product.setDs_produto(request.getParameter("ds_produto"));
+            product.setPreco( Double.parseDouble(request.getParameter("preco_produto")));
+            product.setTamanho(request.getParameter("tamanho_produto"));
+            product.setCategoria(request.getParameter("categoria_produto"));
+            product.setGenero(request.getParameter("genero_produto"));
+            product.setQuantidade(Integer.parseInt(request.getParameter("qnt_produto")));
+            product.setDs_img(request.getParameter("img_produto"));
 
             
             ProdutoDAO uDAO = new ProdutoDAO();

@@ -24,16 +24,17 @@ public class ProdutoDAO {
             {
             PreparedStatement ps; // Estrutura o sql
             String sql = "insert into produto "
-                    + "(DS_NOME, DS_PRODUTO, VL_PRECO, DS_TAMANHO, DS_CATEGORIA, QT_QUANTIDADE, DS_IMG)"
-                    + " values ( ?, ?, ?, ?, ?, ?, ?)";
+                    + "(DS_NOME, DS_PRODUTO, VL_PRECO, DS_TAMANHO, DS_CATEGORIA, DS_GENERO, QT_QUANTIDADE, DS_IMG)"
+                    + " values ( ?, ?, ?,  ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);  // Prepara uma declaração SQL para execução em um banco de dados.
             ps.setString(1, product.getNome());
             ps.setString(2, product.getDs_produto());
             ps.setString(3, Double.toString( product.getPreco() ));
             ps.setString(4, product.getTamanho());
             ps.setString(5, product.getCategoria());
-            ps.setString(6, Double.toString( product.getQuantidade() ));
-            ps.setString(7, product.getDs_img());
+            ps.setString(6, product.getGenero());
+            ps.setString(7, Integer.toString( product.getQuantidade() ));
+            ps.setString(8, product.getDs_img());
 
             if (ps.executeUpdate() != 0) {
                     System.out.println("Sucesso ao cadastrar produto");
@@ -85,4 +86,6 @@ public class ProdutoDAO {
             return null;
         }
     }
+   
+   
 }
