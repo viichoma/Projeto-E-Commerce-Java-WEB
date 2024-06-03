@@ -43,10 +43,11 @@
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
                       
                     <%
-                        if (userEmail.equals("vi@admin.com")) {
-                        out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
+                        if (userEmail != null && userEmail.equals("vi@admin.com")) {
+                            out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
                         }
-                    %>                
+                    %>
+              
 
                     </strong>
                 </nav>

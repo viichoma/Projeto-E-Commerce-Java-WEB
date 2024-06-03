@@ -45,6 +45,7 @@ public class LoginController extends HttpServlet {
                 break;
             case "update":
                 UpdateUser(request, response);
+                break;
             case "excluir":
                 DelUser(request, response);
                 break;
@@ -109,7 +110,7 @@ public class LoginController extends HttpServlet {
             if(uDAO.update(user)){
                 session.setAttribute("username", user.getUsername()); // Setar os novos atributos à sessão
                 session.setAttribute("email", user.getEmail());
-                response.sendRedirect("logged.jsp");
+                response.sendRedirect("ProductController?acao=listar");
             }else{
                 response.sendRedirect("user_profile.jsp"); 
             }
@@ -130,7 +131,7 @@ public class LoginController extends HttpServlet {
             if(uDAO.gravar(user)){
                 response.sendRedirect("login.jsp");
             }else{
-                response.sendRedirect("index.html"); 
+                response.sendRedirect("ProductController?acao=listar"); 
             }
         }
     }
@@ -142,7 +143,7 @@ public class LoginController extends HttpServlet {
                 int id = ((Integer) session.getAttribute("userId")); // Setar atributos à sessão
                 
             if(user.ExcluirConta(id)){
-                response.sendRedirect("index.html");
+                response.sendRedirect("ProductController?acao=listar");
             }else{
                 response.sendRedirect("user_profile.jsp"); 
             }
