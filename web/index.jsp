@@ -1,25 +1,15 @@
 <%-- 
-    Document   : logged
-    Created on : 6 de mai. de 2024, 21:55:30
+    Document   : index
+    Created on : 2 de jun. de 2024, 16:19:37
     Author     : unico
 --%>
 
 <%@page import="VO.ProdutoVO"%>
 <%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-
-<%      
-    session = request.getSession();
-    Integer userId = (Integer) session.getAttribute("userId");
-
-    if (userId != null) {
-
-%>
-
 <html>
     <head>
         <title>Le Saint Jean</title>
@@ -30,7 +20,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>
     
     <body>
-       <!-- Cabeçalho com o MenuGeral presente em todo o site -->
+       <!-- CabeÃ§alho com o MenuGeral presente em todo o site -->
         <header>
         <div id="MenuGeral" class="" >
             <div id="menu_logo">
@@ -38,17 +28,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div>
             <br>
             <!-- Conjunto de acessos de login e carrinho do site-->
-                <nav style="float: right; margin-right: 0px;">
+                <nav style="float: right; margin-right: 20px;">
                     <strong>
-                    <a href="user_profile.jsp" class="login">
-                    <%
-                    String username = (String) session.getAttribute("username");
-                    if (username != null && !username.trim().isEmpty()) {
-                        String firstName = username.split(" ")[0];
-                        out.println(firstName);
-                    } else { out.println("Nome não disponível") ;}
-                    %>
-                    </a>
+                    <a href="login.jsp" class="login">Login</a>
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
                     </strong>
                 </nav>
@@ -57,43 +39,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                    <a href="ProductController?acao=listar" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                        <a href="ProductController?acao=listar" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
-                    <a href="#" style="margin-right: 40px;">Sobre nós</a>
+                    <a href="#" style="margin-right: 40px;">Sobre nÃ³s</a>
                     </strong>
                 </nav>
                 <br>
             </div> 
         </div>
         </header>
-                    
-       <div class="list_products">
-        <!--   
-           <table>
-
-               <tr>
-                   <td>
-           <div style="width: 200px; height: auto; margin-right: 100px;">
-               <a href="view_product.jsp">
-               <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE; border: 1px solid #8DA8EE;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
-               <pre style="font-weight: 800; font-size: 14px">Jaqueta de corrida Ferrari.<br>RS$ 500</pre>
-               </a>
-           </div>
-                    </td>
-                    <td>
-               <div style="width: 200px; height: auto; margin-right: 100px;">
-               <a href="view_product.jsp">
-               <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE; border: 1px solid #8DA8EE;" src="imagens/NIKE-PARACHUTE-PANTS.webp" alt="alt"/>
-               <pre style="font-weight: 800; font-size: 14px">Jaqueta de corrida Ferrari.<br>RS$ 500</pre>
-               </a>
-                    </div>
-                    </td>
-
-           </tr>
-           </table>
-            -->
-           <!-- <% //out.print("<td><a href=\"ProductController?acao=listar\">Listar</a></td>");%>  -->
- 
+    <div class="list_products">
                    <%
             //out.print("<div class=\"list_products\">");           
             List produtos = (List) request.getAttribute("lista");
@@ -127,17 +82,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 
                 out.print("</table>");
             }
-        //out.print("</div>");    
         %>
  
        </div>
 
+
+        
     </body>
 </html>
-
-<%  
-    } 
-    else {
-        response.sendRedirect("ProductController?acao=listar");
-    }   
-%>

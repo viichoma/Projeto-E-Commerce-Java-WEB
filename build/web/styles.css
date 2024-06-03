@@ -115,7 +115,7 @@ input:focus {
 .list_products {
     width: 1500px;height: auto; min-height: 300px; border: 0px solid black;
     position: absolute;
-    top: 40%;
+    padding-top: 1350px;
     left: 50%;
     transform: translate(-50%, -50%);
 }

@@ -32,15 +32,23 @@ public class ProductController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+     
     // Checar função que deve ocorrer
     String acao = request.getParameter("acao");
         if (acao != null) {
         switch (acao) {
             case "listar":
                 ProdutoDAO p = new ProdutoDAO();
-                    request.setAttribute("lista", p.ListarProdutos());
-                    RequestDispatcher rd = request.getRequestDispatcher("logged.jsp");
-                    rd.forward(request, response);
+                request.setAttribute("lista", p.ListarProdutos());
+                HttpSession session = request.getSession();
+                Integer userId = (Integer) session.getAttribute("userId");
+
+                // Encaminhar para a página adequada
+                if (userId != null) {
+                    request.getRequestDispatcher("/logged.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+                }
                 break;
             case "cadastrar":
 

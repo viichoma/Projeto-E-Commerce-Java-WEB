@@ -84,7 +84,7 @@ public class LoginController extends HttpServlet {
                     session.setAttribute("email", email);
                     session.setAttribute("username", username);
                     
-                    response.sendRedirect("logged.jsp"); // Encaminhar para logged.jsp caso tudo ocorra bem.
+                    response.sendRedirect("ProductController?acao=listar"); // Encaminhar para logged.jsp caso tudo ocorra bem.
                 } else {
                     response.sendRedirect("register.jsp"); // Encaminhar para register.jsp caso tudo dê errado.
                 }

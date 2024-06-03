@@ -48,17 +48,7 @@
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                    <%
-                        if (userId != null) { 
-                    %>
-                        <a href="logged.jsp" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
-                    <%
-                        } else { 
-                    %>
-                        <a href="index.html" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
-                    <%
-                        }
-                    %> 
+                    <a href="ProductController?acao=listar" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
@@ -92,4 +82,9 @@
 
     </body>
 </html>
-
+<%  
+    } 
+    else {
+        response.sendRedirect("ProductController?acao=listar");
+    }   
+%>

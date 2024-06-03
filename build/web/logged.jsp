@@ -20,7 +20,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
 %>
 
-
 <html>
     <head>
         <title>Le Saint Jean</title>
@@ -58,7 +57,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <!-- Conjunto de acessos central do site-->
                 <nav style="">
                     <strong>
-                        <a href="logged.jsp" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
+                    <a href="ProductController?acao=listar" style="margin-left: 220px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="#" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
@@ -69,39 +68,68 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </header>
                     
        <div class="list_products">
-           <div style="width: 200px; height: auto;">
+        <!--   
+           <table>
+
+               <tr>
+                   <td>
+           <div style="width: 200px; height: auto; margin-right: 100px;">
                <a href="view_product.jsp">
-               <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
+               <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE; border: 1px solid #8DA8EE;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
                <pre style="font-weight: 800; font-size: 14px">Jaqueta de corrida Ferrari.<br>RS$ 500</pre>
                </a>
            </div>
-           <% out.print("<td><a href=\"ProductController?acao=listar\">Listar</a></td>");%>
+                    </td>
+                    <td>
+               <div style="width: 200px; height: auto; margin-right: 100px;">
+               <a href="view_product.jsp">
+               <img style="width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE; border: 1px solid #8DA8EE;" src="imagens/NIKE-PARACHUTE-PANTS.webp" alt="alt"/>
+               <pre style="font-weight: 800; font-size: 14px">Jaqueta de corrida Ferrari.<br>RS$ 500</pre>
+               </a>
+                    </div>
+                    </td>
+
+           </tr>
+           </table>
+            -->
+           <!-- <% //out.print("<td><a href=\"ProductController?acao=listar\">Listar</a></td>");%>  -->
+ 
                    <%
+            //out.print("<div class=\"list_products\">");           
             List produtos = (List) request.getAttribute("lista");
             if (produtos != null) {
-                out.print("Achados: " + produtos.size() + "<br><br><br>");
-                out.print("<table width=\"50%\" border=\"1\" cellspacing=\"0\" align=\"center\">");
+                //out.print("Achados: " + produtos.size() + "<br><br><br>");
+                out.print("<table>");
                 for (int cont = 0; cont < produtos.size(); cont++) {
                     ProdutoVO p = new ProdutoVO();
                     p = (ProdutoVO) produtos.get(cont);
-                    out.print("<tr>");
-out.print("<td><img style=\"width: 210px; height: auto; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"imagens/" + p.getDs_img() + "\" alt=\"alt\"/></td>");
-                    out.print("<td>" + p.getDs_img()+ "</td>");
-                    out.print("<td>" + p.getNome()+ "</td>");
-                    out.print("<td>" + p.getPreco()+ "</td>");
 
+                    
 
-                    //out.print("<td><a href=\"ProdutoController?operacao=2&id="+p.getId()+"\">Listar</a></td>");
-                    //out.print("<td><a href=\"ProdutoController?operacao=3&id="+p.getId()+"\">Alterar</a></td>");
-                    out.print("</tr>");
+            if (cont % 5 == 0) {
+                out.print("<tr>");
+            }
+                    out.print("<td>");
+                    out.print("<div style='width: 200px; height: auto; margin-right: 100px;'>");
+                        out.print("<a href='view_product.jsp'>");
+                        out.print("<img style=\"width: 210px; height: 315px; border-radius: 5px; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"imagens/" + p.getDs_img() + "\" alt=\"alt\"/>");
+                        out.print("<pre style=\"font-weight: 800; font-size: 14px\">" + p.getNome()+ "<br>R$ " + p.getPreco()+ "</pre>");
+                        out.print("</a>");
+                    out.print("</div>");
+                    out.print("</td>");
+                    
+                    
+
+            if ((cont + 1) % 5 == 0 || cont == produtos.size() - 1) {
+                out.print("</tr>");
+            }
                 }
+                
                 out.print("</table>");
-            }            
+            }
+        //out.print("</div>");    
         %>
-           
-           
-           
-           
+ 
        </div>
 
     </body>
@@ -110,6 +138,6 @@ out.print("<td><img style=\"width: 210px; height: auto; border-radius: 5px; box-
 <%  
     } 
     else {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("ProductController?acao=listar");
     }   
 %>
