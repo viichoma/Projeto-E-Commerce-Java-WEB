@@ -119,7 +119,7 @@
                     <input type="text" name="genero_produto" placeholder="Gênero do produto" required class="login_input">
                     <input type="number" name="qnt_produto" placeholder="Quantidade" required class="login_input">
                     <input type="text" name="img_produto" placeholder="Nome da imagem" required class="login_input">
-                    <input type="file" name="imagem_produto" id="" accept=".jpeg, .jpg, .png, .webp">
+                    <!--<input type="file" name="imagem_produto" id="" accept=".jpeg, .jpg, .png, .webp">-->
                 </div>
   
             </div>
