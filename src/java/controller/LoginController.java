@@ -48,9 +48,13 @@ public class LoginController extends HttpServlet {
                 break;
             case "excluir":
                 DelUser(request, response);
+                HttpSession session = request.getSession(false);
+                if (session != null) {
+                    session.invalidate();
+                }
                 break;
             case "deslogar":
-                 HttpSession session = request.getSession(false);
+                session = request.getSession(false);
                 if (session != null) {
                     session.invalidate();
                 }
