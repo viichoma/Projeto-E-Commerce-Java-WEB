@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Servidor:                     127.0.0.1
--- Versão do servidor:           10.4.32-MariaDB - mariadb.org binary distribution
+-- Versão do servidor:           10.4.28-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win64
--- HeidiSQL Versão:              12.7.0.6850
+-- HeidiSQL Versão:              12.6.0.6765
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -50,23 +50,24 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `DS_CATEGORIA` varchar(50) DEFAULT NULL,
   `DS_GENERO` char(50) DEFAULT NULL,
   `QT_QUANTIDADE` int(11) DEFAULT NULL,
-  `DS_IMG` varchar(50) DEFAULT NULL,
+  `DS_IMG` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`CD_PRODUTO`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Copiando dados para a tabela projetojava.produto: ~11 rows (aproximadamente)
+-- Copiando dados para a tabela projetojava.produto: ~12 rows (aproximadamente)
 INSERT INTO `produto` (`CD_PRODUTO`, `DS_NOME`, `DS_PRODUTO`, `VL_PRECO`, `DS_TAMANHO`, `DS_CATEGORIA`, `DS_GENERO`, `QT_QUANTIDADE`, `DS_IMG`) VALUES
-	(2, 'Jaqueta Ferrari', 'Jaqueta de corrida Ferrari feita de couro sintétic', 500, 'M', 'ROUPA', 'M', 10, 'FERRARI-JACKET.webp'),
-	(3, 'Calça parachute Nike', 'Calça do estilo parachute da Nike', 200, 'M', 'ROUPA', 'F', 10, 'NIKE-PARACHUTE-PANTS.webp'),
-	(4, 'tênis nike Air max plus tn', 'tênis inspirado em modelo air max plus TN "triple ', 300, '40', 'SAPATO', 'U', 10, 'NIKE-AIR-MAX+.webp'),
-	(5, 'jaqueta moletom spiderman', 'jaqueta em tecido de moletom e capuz, com estampa ', 219, 'M', 'ROUPA', 'U', 10, 'HOMEM-ARANHA.webp'),
-	(6, 'Calça Hello Kitty', 'Calça Hello Kitty kawai', 70, 'M', 'ROUPA', 'U', 10, 'CALCA HELLO KITTY.jpg'),
-	(7, 'Body streetwear', 'body em modelagem cut-out com mangas estilo luvas,', 129, 'M', 'ROUPA', 'F', 10, 'BODY STREETWEAR.webp'),
-	(8, 'body manga longa nike branco', 'body com manga longa e zíper frontal, com detalhe ', 130, 'M', 'ROUPA', 'F', 10, 'BODY MANGA LONGA NIKE BRANCO.webp'),
-	(9, 'body manga longa nike', 'body com manga longa e zíper frontal, com detalhe ', 130, 'M', 'ROUPA', 'F', 10, 'BODY MANGA LONGA NIKE PRETO.webp'),
-	(10, 'Camiseta Vintage 90\'s eminem', 'camiseta em modelagem reta, inspirada em peças y2k', 150, 'G', 'ROUPA', 'U', 10, 'CAMISETA VINTAGE 90\'S EMINEM.webp'),
-	(11, 'Tênis adidas samba', 'tênis inspirado no modelo adidas samba.', 389, '42', 'SAPATO', 'U', 10, 'TENIS ADIDAS SAMBA.webp'),
-	(12, 'Cropped baby tee', 'cropped em modelagem baby tee, com logo frontal da', 150, 'G', 'ROUPA', 'F', 10, 'CROPPPED-BABY-TEE-NIKE.webp');
+	(2, 'Jaqueta Ferrari', 'Jaqueta de corrida Ferrari feita de couro sintétic', 500, 'M', 'ROUPA', 'M', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/521-6e898e8078f6055b3d16763883183619-1024-1024.webp'),
+	(3, 'Calça parachute Nike', 'Calça do estilo parachute da Nike', 200, 'M', 'ROUPA', 'F', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/1451-26e0c69cc53944d00716851156900030-1024-1024.webp'),
+	(4, 'tênis nike Air max plus tn', 'tênis inspirado em modelo air max plus TN "triple ', 300, '40', 'SAPATO', 'U', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/90-713ac8f1d7414e860017017310387704-1024-1024.webp'),
+	(5, 'jaqueta moletom spiderman', 'jaqueta em tecido de moletom e capuz, com estampa ', 219, 'M', 'ROUPA', 'U', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/53-52d47533f41075d90116989850275682-1024-1024.webp'),
+	(6, 'Calça Hello Kitty', 'Calça Hello Kitty kawai', 70, 'M', 'ROUPA', 'U', 10, 'https://firebasestorage.googleapis.com/v0/b/kyte-7c484.appspot.com/o/qaratAhlmzPGjhHHcdMoz55qtXY2%2Fthumb_280_730d1c14-c90f-4f1b-821d-3530672ded01.jpg?alt=media'),
+	(7, 'Body streetwear', 'body em modelagem cut-out com mangas estilo luvas,', 129, 'M', 'ROUPA', 'F', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/49-bfd7e12a2d216015b017017292391641-1024-1024.webp'),
+	(8, 'body manga longa nike branco', 'body com manga longa e zíper frontal, com detalhe ', 130, 'M', 'ROUPA', 'F', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/12-89a6abd7009614c66116989842748382-1024-1024.webp'),
+	(9, 'body manga longa nike', 'body com manga longa e zíper frontal, com detalhe ', 130, 'M', 'ROUPA', 'F', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/441-ec7bd3075c8f534fee16938505128385-1024-1024.webp'),
+	(10, 'Camiseta Vintage 90\'s eminem', 'camiseta em modelagem reta, inspirada em peças y2k', 150, 'G', 'ROUPA', 'U', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/711-dbaf477ab8153f470516856696935776-1024-1024.webp'),
+	(11, 'Tênis adidas samba', 'tênis inspirado no modelo adidas samba.', 389, '42', 'SAPATO', 'U', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/2-31-66132b4dc4a901b55b16851164961886-1024-1024.webp'),
+	(12, 'Cropped baby tee', 'cropped em modelagem baby tee, com logo frontal da', 150, 'G', 'ROUPA', 'F', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/21-f5340cd1e45e58488317017297071993-1024-1024.webp'),
+	(17, 'Bolsa Diesel', 'a', 222, 'unico', 'acessorio', 'u', 10, 'https://acdn.mitiendanube.com/stores/002/859/419/products/46-fd9a5280591adb55ed17169125618721-480-0.webp');
 
 -- Copiando estrutura para tabela projetojava.usuario
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -75,13 +76,11 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `DS_EMAIL` varchar(50) NOT NULL,
   `DS_SENHA` varchar(50) NOT NULL,
   PRIMARY KEY (`CD_USUARIO`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Copiando dados para a tabela projetojava.usuario: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela projetojava.usuario: ~1 rows (aproximadamente)
 INSERT INTO `usuario` (`CD_USUARIO`, `DS_NOME`, `DS_EMAIL`, `DS_SENHA`) VALUES
-	(7, 'vi', 'vi', 'vi'),
-	(8, 'Vinicius Woicikieviz Choma', 'vinicius.choma@outlook.com', '123'),
-	(9, 'Vinicius Woicikieviz', 'vi@admin.com', 'vi@admin!@');
+	(11, 'Vinicius Woicikieviz', 'vi@admin.com', 'admin!@#');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
