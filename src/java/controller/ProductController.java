@@ -32,38 +32,60 @@ public class ProductController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    
+    // Adiciona o cabeçalho de segurança
+    response.setHeader("X-Content-Type-Options", "nosniff");
      
     // Checar função que deve ocorrer
     String acao = request.getParameter("acao");
         if (acao != null) {
-        switch (acao) {
-            case "listar":
-                ProdutoDAO p = new ProdutoDAO();
-                request.setAttribute("lista", p.ListarProdutos());
-                HttpSession session = request.getSession();
-                Integer userId = (Integer) session.getAttribute("userId");
+            switch (acao) {
+                case "listar":
+                    ProdutoDAO p = new ProdutoDAO();
+                    request.setAttribute("lista", p.ListarProdutos());
+                    HttpSession session = request.getSession();
+                    Integer userId = (Integer) session.getAttribute("userId");
 
-                // Encaminhar para a página adequada
-                if (userId != null) {
-                    request.getRequestDispatcher("/homeOn.jsp").forward(request, response);
-                } else {
-                    request.getRequestDispatcher("/homeOff.jsp").forward(request, response);
-                }
-                break;
-            case "cadastrar":
-                CadProduct(request, response);
-                break;
-            case "atualizar":
+                    // Encaminhar para a página adequada
+                    if (userId != null) {
+                        request.getRequestDispatcher("/homeOn.jsp").forward(request, response);
+                    } else {
+                        request.getRequestDispatcher("/homeOff.jsp").forward(request, response);
+                    }
+                    break;
+                case "visualizar":
+                    ViewProduct(request, response);
+                    break;
+                case "cadastrar":
+                    CadProduct(request, response);
+                    break;
+                case "atualizar":
 
-            case "excluir":
+                case "excluir":
 
-                break;
-            default:
-                break;
-                      }
-                         }
+                    break;
+                default:
+                    break;
+            }
+        }
     }
-
+    
+    protected void ViewProduct(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Obtém o ID do produto, usa o DAO para obter os dados do produto pelo ID
+        int productId = Integer.parseInt(request.getParameter("id"));
+        ProdutoDAO pDAO = new ProdutoDAO();
+        ProdutoVO product = pDAO.getProdutoById(productId);
+        
+        // Se o produto for encontrado, vai para view_product, senão envia uma mensagem de erro
+        if (product != null) {
+            request.setAttribute("product", product);
+            request.getRequestDispatcher("/view_product.jsp").forward(request, response);
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Produto não encontrado");
+        }
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

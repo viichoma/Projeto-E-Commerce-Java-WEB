@@ -50,7 +50,7 @@ public class ProdutoDAO {
    }
     
  
-   public ArrayList<ProdutoVO> ListarProdutos() {
+    public ArrayList<ProdutoVO> ListarProdutos() {
         PreparedStatement ps; // estrutura o sql
         ResultSet rs; //armazenará o resultado do bd
         Connection con; //conexão com o bd
@@ -87,5 +87,34 @@ public class ProdutoDAO {
         }
     }
    
+    // Método para buscar um produto por ID
+    public ProdutoVO getProdutoById(int id) {
+        ProdutoVO product = null;
+        try {
+            Connection con = new Conexao().estabeleceConexao(); // Estabelece conexão com o BD
+            if (con != null) {
+                String sql = "SELECT CD_PRODUTO, DS_NOME, DS_PRODUTO, VL_PRECO, DS_TAMANHO, QT_QUANTIDADE, DS_CATEGORIA, DS_IMG FROM produto WHERE CD_PRODUTO = ?";
+                PreparedStatement ps = con.prepareStatement(sql); // Prepara a declaração SQL
+                ps.setInt(1, id); // Define o parâmetro do ID na declaração SQL
+                ResultSet rs = ps.executeQuery(); // Executa a consulta e armazena o resultado em 'rs'
+                if (rs.next()) { // Verifica se há um resultado na consulta
+                    // Cria um novo objeto 'ProdutoVO' e define os dados
+                    product = new ProdutoVO();
+                    product.setId(rs.getInt("CD_PRODUTO"));
+                    product.setNome(rs.getString("DS_NOME"));
+                    product.setDs_produto(rs.getString("DS_PRODUTO"));
+                    product.setPreco(rs.getDouble("VL_PRECO"));
+                    product.setTamanho(rs.getString("DS_TAMANHO"));
+                    product.setCategoria(rs.getString("DS_CATEGORIA"));
+                    product.setQuantidade(rs.getInt("QT_QUANTIDADE"));
+                    product.setDs_img(rs.getString("DS_IMG"));
+                }
+                con.close();
+            }
+        } catch (SQLException erro) {
+            System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
+        }
+        return product;
+    }
    
 }

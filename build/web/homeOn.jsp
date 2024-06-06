@@ -76,43 +76,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </header>
                     
        <div class="list_products">
-
-                  <%
-            //out.print("<div class=\"list_products\">");           
-            List produtos = (List) request.getAttribute("lista");
+            <%
+            //out.print("<div class=\"list_products\">");
+            List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("lista");
             if (produtos != null) {
                 //out.print("Achados: " + produtos.size() + "<br><br><br>");
                 out.print("<table>");
                 for (int cont = 0; cont < produtos.size(); cont++) {
-                    ProdutoVO p = new ProdutoVO();
-                    p = (ProdutoVO) produtos.get(cont);
+                    ProdutoVO p = (ProdutoVO) produtos.get(cont);  
 
+                    if (cont % 5 == 0) {
+                        out.print("<tr>");
+                    }
                     
-
-            if (cont % 5 == 0) {
-                out.print("<tr>");
-            }
                     out.print("<td>");
                     out.print("<div style='width: 200px; height: auto; margin-right: 100px;'>");
-                        out.print("<a href='view_product.jsp'>");
-                        //out.print("<img style=\"width: 210px; height: 315px; border-radius: 5px; border: 1.7px solid #8DA8EE; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"imagens/" + p.getDs_img() + "\" alt=\"alt\"/>");
+                        out.print("<a href='ProductController?acao=visualizar&id=" + p.getId() + "'>");
                         out.print("<img style=\"width: 210px; height: 315px; border-radius: 5px; border: 1.7px solid #8DA8EE; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"" + p.getDs_img() + "\" alt=\"alt\"/>");
-                        out.print("<pre style=\"font-weight: 800; font-size: 14px\">" + p.getNome()+ "<br>R$ " + p.getPreco()+ "</pre>");
+                        out.print("<pre style='font-weight: 800; font-size: 14px'>" + p.getNome() + "<br>R$ " + p.getPreco() + "</pre>");
                         out.print("</a>");
                     out.print("</div>");
                     out.print("</td>");
-                    
-                    
 
-            if ((cont + 1) % 5 == 0 || cont == produtos.size() - 1) {
-                out.print("</tr>");
-            }
+                    if ((cont + 1) % 5 == 0 || cont == produtos.size() - 1) {
+                        out.print("</tr>");
+                    }
+                    
                 }
                 
                 out.print("</table>");
             }
-        %>
- 
+            %>
        </div>
 
     </body>

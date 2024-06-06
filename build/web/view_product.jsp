@@ -4,13 +4,21 @@
     Author     : unico
 --%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="VO.ProdutoVO"%>
+
 <%      
     session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
     String userEmail = (String) session.getAttribute("email");
+    
+    ProdutoVO product = (ProdutoVO) request.getAttribute("product");
+    if (product == null) {
+        response.sendRedirect("ProductController?acao=listar");
+        return;
+    }
 %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -39,7 +47,7 @@
                     if (username != null && !username.trim().isEmpty()) {
                         String firstName = username.split(" ")[0];
                         out.println(firstName);
-                    } else { out.println("Nome não disponível") ;}
+                    } else { out.println("Convidado") ;}
                     %>
                     </a>
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
@@ -66,13 +74,19 @@
         </div>
         </header>
                     
-       <div class="view_product">
-           <div style="width: 600px; height: auto;">
-               <img style="width: 500px; height: auto; border-radius: 5px;" src="imagens/FERRARI-JACKET.webp" alt="alt"/>
-           </div>
-           <div style="    height: 400px; flex: 0; padding: 52px;">
-                <pre style="font-weight: 800; font-size: 20px">Jaqueta de corrida Ferrari<h2 style="">RS$ 500,00</h2></pre>
+        <div class="view_product">
+            <div style="width: 600px; height: auto;">
+                <img style="width: 500px; height: auto; border-radius: 5px;" src="<%= product.getDs_img() %>" alt="alt"/>
+            </div>
+            <div style="height: 400px; flex: 0; padding: 52px;">
+                <pre style="font-weight: 800; font-size: 20px"><%= product.getNome() %><h2>R$ <%= product.getPreco() %></h2></pre>
                 <form action="" style="display: flex; flex-direction: column; align-items: center;">
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="id" value="<%= product.getId() %>">
+                    <input type="hidden" name="name" value="<%= product.getNome() %>">
+                    <input type="hidden" name="price" value="<%= product.getPreco() %>">
+                    <input type="hidden" name="image" value="<%= product.getDs_img() %>">
+
                     <div style="display: flex; justify-content: center; gap: 10px;">
                         <input type="radio" id="size_P" name="size" value="P">
                         <label for="size_P"> P </label>
@@ -84,10 +98,9 @@
                     <label for="product_quant"> Quantidade </label><br>
                     <input type="number" id="" name="product_quant" value="1" style="width: 80px; text-align: center;"><br><br>
                     <input type="submit" class="add_cart" value="Adicionar ao Carrinho">
-                    
                 </form>
-           </div>
-       </div>
+            </div>
+        </div>
 
     </body>
 </html>
