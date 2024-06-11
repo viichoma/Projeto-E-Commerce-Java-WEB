@@ -116,5 +116,37 @@ public class ProdutoDAO {
         }
         return product;
     }
-   
+ 
+    public ArrayList<ProdutoVO> ListaBasica() {
+        PreparedStatement ps; // estrutura o sql
+        ResultSet rs; //armazenará o resultado do bd
+        Connection con; //conexão com o bd
+
+        try {
+            con = new Conexao().estabeleceConexao(); // Estabelece conexão com o BD
+            if (con != null) {
+                String sql = "select CD_PRODUTO, DS_NOME from produto";
+                ps = con.prepareStatement(sql);
+                rs = ps.executeQuery();
+                ArrayList<ProdutoVO> lista = new ArrayList<>();
+                while (rs.next()) {
+                    //setar os valores dentro de um objeto (Produto)
+                    //adicionar este objeto a uma list
+                    ProdutoVO p=  new ProdutoVO();      
+                    p.setId(rs.getInt("CD_PRODUTO"));
+                    p.setNome(rs.getString("DS_NOME"));
+
+                    lista.add(p);
+                }
+                con.close();
+                return lista;
+            }else{
+                return null;
+            }
+        } catch (SQLException erro) {
+            System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
+            return null;
+        }
+    }
+    
 }

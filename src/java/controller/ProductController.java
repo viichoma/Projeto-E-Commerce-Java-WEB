@@ -64,6 +64,9 @@ public class ProductController extends HttpServlet {
                 case "excluir":
 
                     break;
+                case "listar_basico":
+
+                    break;
                 default:
                     break;
             }
