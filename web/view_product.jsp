@@ -54,8 +54,7 @@
                     
                     <%
                         if (userEmail != null && userEmail.equals("vi@admin.com")) {
-                            out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
-                        }
+                            out.print("<a href=\"ProductController?acao=listar_lista\" class=\"carrinho\">ADM</a>");                        }
                     %>
                     </strong>
                 </nav>

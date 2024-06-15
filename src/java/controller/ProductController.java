@@ -62,10 +62,12 @@ public class ProductController extends HttpServlet {
                 case "atualizar":
 
                 case "excluir":
-
+                    DelProduct(request, response);
                     break;
-                case "listar_basico":
-
+                case "listar_lista":
+                    ProdutoDAO t = new ProdutoDAO();
+                    request.setAttribute("listar", t.ListarProdutos());
+                    request.getRequestDispatcher("/admin_page.jsp").forward(request, response);
                     break;
                 default:
                     break;
@@ -150,5 +152,18 @@ public class ProductController extends HttpServlet {
             }
         }
     }
-    
+
+    protected void DelProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+             try (PrintWriter out = response.getWriter()) {
+                ProdutoDAO produto = new ProdutoDAO();
+                String produtoIdStr = request.getParameter("produtoid");
+                int id = Integer.parseInt(produtoIdStr);
+                
+            if(produto.ExcluirProduto(id)){
+                response.sendRedirect("ProductController?acao=listar_lista");
+            }else{
+                response.sendRedirect("admin_page.jsp"); 
+            }
+        }
+    }
 }

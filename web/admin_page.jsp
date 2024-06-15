@@ -186,50 +186,69 @@
              </div>
         </div>
 
-         <div id="Excluir" style="display: none;" class="tabcontent">
+        <div id="Excluir" style="display: none;" class="tabcontent">
+            <div style="text-align: center">
+                <h1 style="font-size: 40px; color: #7a98e4; text-shadow: 1px 2px #6E69CA;">Excluir Produto</h1>
+                <p>Preencha os dados para excluir um produto:</p><br>
+                <div class="form-container">
+                    <div class="form-column">
+                        <form action="ProductController" method="post">
+                            <input type="hidden" name="acao" value="excluir">
+                            <%
+                            List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("listar");
+                            if (produtos != null) {
+                                out.println("<select name='produtoid'>");
+                                for (ProdutoVO p : produtos) {
+                                    out.println("<option value='" + p.getId() + "'>" + p.getNome() + " - " + p.getId() + "</option>");
+                                }
+                                out.println("</select>");
+                            }
+                            %>
+                            <br><br>
+                            <input type="submit" value="Excluir">
+                        </form>  
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="Atualizar" style="display: none;" class="tabcontent">
+            
             
             <div style="text-align: center">
-                <form action="ProductController" method="post">
-                <!-- Se a ação for register, o LoginController efetua a funçao de gravar -->
-                <input type="hidden" name="acao" value="excluir">
+
                 
                 <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Excluir Produto</h1>
                 <p>Preencha os dados para adicionar um produto novo:</p><br>
                 
             <div class="form-container">
                 <div class="form-column">
-                    <input type="text" name="nome_produto" placeholder="Nome do produto" required class="login_input">
-                    <input type="text" name="ds_produto" placeholder="Descrição do produto" required class="login_input">
-                    <input type="number" name="preco_produto" placeholder="Preço do produto" required class="login_input">
-                    <input type="text" name="tamanho_produto" placeholder="Tamanho do produto" required class="login_input">
-                </div>
-                <div class="form-column">
-                    <input type="text" name="categoria_produto" placeholder="Categoria do produto" required class="login_input">
-                    <input type="text" name="genero_produto" placeholder="Gênero do produto" required class="login_input">
-                    <input type="number" name="qnt_produto" placeholder="Quantidade" required class="login_input">
-                    <input type="text" name="img_produto" placeholder="Nome da imagem" required class="login_input">
-                    <!--<input type="file" name="imagem_produto" id="" accept=".jpeg, .jpg, .png, .webp">-->
-                </div>
-            </div>
-                <br><br><input type="submit" class="submit_input">
-                </form> 
-             </div>
-        </div>            
-
-        <div id="Atualizar" style="display: none;" class="tabcontent">
+                    
+                      <form action="ProductController" method="post">
+                    <input type="hidden" name="acao" value="atualizar">
+                           
+            <%
+            //out.print("<div class=\"list_products\">");
+            if (produtos != null) {
+                    out.println("<select name='produtoid'>");
+                
+                for (int cont = 0; cont < produtos.size(); cont++) {
+                ProdutoVO p = (ProdutoVO) produtos.get(cont);
+                  out.println("<option value=~" + p.getId() + ">" + p.getNome() + "-" + ( p.getId() ) + "</option>");
+                }
+                out.println("</select>\n</td></tr>\n");
+            }
             
-            <div style="text-align: center">
-                <form action="ProductController" method="post">
-                <!-- Se a ação for register, o LoginController efetua a funçao de gravar -->
-                <input type="hidden" name="acao" value="atualizar">
-                
-                <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Atualizar Produto</h1>
-                <br>
-                
-            <div class="">
+            %>
+                    <br><br><input type="submit"">
+                    </form>  
+                </div>
 
-             </div>
-        </div> 
+
+            </div>
+            </div>
+        </div>
                     
     </body>
 </html>

@@ -3,6 +3,8 @@
     Created on : 27 de mai. de 2024, 21:42:19
     Author     : unico
 --%>
+<%@page import="java.util.List"%>
+<%@page import="VO.ProdutoVO"%>
 <%      
     session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
@@ -44,7 +46,7 @@
                       
                     <%
                         if (userEmail != null && userEmail.equals("vi@admin.com")) {
-                            out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
+                            out.print("<a href=\"ProductController?acao=listar_lista\" class=\"carrinho\">ADM</a>");
                         }
                     %>
               
@@ -66,10 +68,47 @@
         </div>
         </header>
         <div>
-           <img src="imagens/le_saint_jean.webp" alt="alt" style="width: 500px; height: auto;position: absolute;
+          <!---  <img src="imagens/le_saint_jean.webp" alt="alt" style="width: 500px; height: auto;position: absolute;
                     top: 45%;
                     left: 15%;
-                    transform: translate(-50%, -50%);"/>
+                    transform: translate(-50%, -50%);"/> ---->
+          
+          
+                       <form action="ProductController" method="post">
+                    <input type="hidden" name="acao" value="listar_lista">
+                           
+            <%
+            //out.print("<div class=\"list_products\">");
+            List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("listar");
+            if (produtos != null) {
+                //out.print("Achados: " + produtos.size() + "<br><br><br>");
+                out.print("<table>");
+                for (int cont = 0; cont < produtos.size(); cont++) {
+                    ProdutoVO p = (ProdutoVO) produtos.get(cont);  
+
+                    if (cont % 5 == 0) {
+                        out.print("<tr>");
+                    }
+                    
+                    out.print("<td>");
+                    out.print("<div style='width: 200px; height: auto; margin-right: 100px;'>");
+                        out.print("<a href='ProductController?acao=visualizar&id=" + p.getId() + "'>");
+                        out.print("<pre style='font-weight: 800; font-size: 14px'>" + p.getNome() + "<br>R$ " + p.getPreco() + "</pre>");
+                        out.print("</a>");
+                    out.print("</div>");
+                    out.print("</td>");
+
+                    if ((cont + 1) % 5 == 0 || cont == produtos.size() - 1) {
+                        out.print("</tr>");
+                    }
+                    
+                }
+                
+                out.print("</table>");
+            }
+            %>
+                    <br><br><input type="submit"">
+                    </form> 
        </div>
        
     </body>
