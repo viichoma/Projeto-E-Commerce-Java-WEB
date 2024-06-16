@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author unico
@@ -93,7 +94,7 @@ public class ProdutoDAO {
         try {
             Connection con = new Conexao().estabeleceConexao(); // Estabelece conexão com o BD
             if (con != null) {
-                String sql = "SELECT CD_PRODUTO, DS_NOME, DS_PRODUTO, VL_PRECO, DS_TAMANHO, QT_QUANTIDADE, DS_CATEGORIA, DS_IMG FROM produto WHERE CD_PRODUTO = ?";
+                String sql = "SELECT CD_PRODUTO, DS_NOME, DS_PRODUTO, VL_PRECO, QT_QUANTIDADE, DS_CATEGORIA, DS_IMG FROM produto WHERE CD_PRODUTO = ?";
                 PreparedStatement ps = con.prepareStatement(sql); // Prepara a declaração SQL
                 ps.setInt(1, id); // Define o parâmetro do ID na declaração SQL
                 ResultSet rs = ps.executeQuery(); // Executa a consulta e armazena o resultado em 'rs'
@@ -104,10 +105,13 @@ public class ProdutoDAO {
                     product.setNome(rs.getString("DS_NOME"));
                     product.setDs_produto(rs.getString("DS_PRODUTO"));
                     product.setPreco(rs.getDouble("VL_PRECO"));
-                    product.setTamanho(rs.getString("DS_TAMANHO"));
                     product.setCategoria(rs.getString("DS_CATEGORIA"));
                     product.setQuantidade(rs.getInt("QT_QUANTIDADE"));
                     product.setDs_img(rs.getString("DS_IMG"));
+                    
+                    // Obter tamanhos
+                    List<String> tamanhos = getTamanhosByProdutoId(product.getId());
+                    product.setTamanhos(tamanhos);
                 }
                 con.close();
             }
@@ -117,6 +121,26 @@ public class ProdutoDAO {
         return product;
     }
     
+    // Método para buscar um tamanho pelo ID do produto
+    public List<String> getTamanhosByProdutoId(int produtoId) {
+        List<String> tamanhos = new ArrayList<>();
+        try {
+            Connection con = new Conexao().estabeleceConexao();
+            if (con != null) {
+                String sql = "SELECT DS_TAMANHO FROM produto_tamanhos WHERE CD_PRODUTO = ?";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, produtoId);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    tamanhos.add(rs.getString("DS_TAMANHO"));
+                }
+                con.close();
+            }
+        } catch (SQLException erro) {
+            System.err.print("Exceção gerada ao tentar buscar os tamanhos: " + erro.getMessage());
+        }
+        return tamanhos;
+    }
     
          public boolean ExcluirProduto(int id){
         Connection con = null; //conexão com o bd

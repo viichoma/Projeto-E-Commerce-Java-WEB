@@ -4,6 +4,8 @@
  */
 package VO;
 
+import java.util.List;
+
 /**
  *
  * @author unico
@@ -14,6 +16,7 @@ public class ProdutoVO {
     private String ds_produto;
     private double preco;
     private String tamanho;
+    private List<String> tamanhos;
     private String categoria;
     private String genero;
     private int quantidade;
@@ -57,6 +60,14 @@ public class ProdutoVO {
 
     public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
+    }
+
+    public List<String> getTamanhos() {
+        return tamanhos;
+    }
+
+    public void setTamanhos(List<String> tamanhos) {
+        this.tamanhos = tamanhos;
     }
 
     public String getCategoria() {
