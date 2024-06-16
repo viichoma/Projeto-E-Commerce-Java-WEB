@@ -152,14 +152,14 @@ public class ProductController extends HttpServlet {
             }
         }
     }
-
+    //Função para deletar produto
     protected void DelProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
              try (PrintWriter out = response.getWriter()) {
                 ProdutoDAO produto = new ProdutoDAO();
-                String produtoIdStr = request.getParameter("produtoid");
+                String produtoIdStr = request.getParameter("produtoid"); // Pega o id do select-list do admin_page.jsp
                 int id = Integer.parseInt(produtoIdStr);
                 
-            if(produto.ExcluirProduto(id)){
+            if(produto.ExcluirProduto(id)){ // Se o delete tiver sucessso lista e redireciona à admin_page
                 response.sendRedirect("ProductController?acao=listar_lista");
             }else{
                 response.sendRedirect("admin_page.jsp"); 

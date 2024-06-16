@@ -112,7 +112,8 @@
             <div class="form-container">
                 <div class="form-column">
                     <form action="ProductController" method="post">
-                    <input type="hidden" name="acao" value="excluir">
+                    <input type="hidden" name="acao" value="excluir">                      
+       <!-- Listar produtos dentro de um select-list -->
             <%
                     List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("listar");
                     if (produtos != null) {

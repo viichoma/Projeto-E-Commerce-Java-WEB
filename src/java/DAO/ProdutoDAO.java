@@ -142,7 +142,7 @@ public class ProdutoDAO {
         return tamanhos;
     }
     
-         public boolean ExcluirProduto(int id){
+    public boolean ExcluirProduto(int id){
         Connection con = null; //conexão com o bd
         PreparedStatement ps = null; // estrutura o sql
         ResultSet rs = null; //armazenará o resultado do bd
