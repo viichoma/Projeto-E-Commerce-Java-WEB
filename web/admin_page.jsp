@@ -29,6 +29,14 @@
         <link rel="shortcut icon" type="imagex/png" href="./imagens/site_icon.ico">
     </head>
 <body>
+    
+<style>
+select {
+  appearance: none; height: 30px; background-color: #ffffff; color: #2b2b2b; border: 0.5px solid #7a98e4;
+  border-radius: 3px; box-shadow: 5px 5px #7a98e4; padding: 0 1em 0 0; margin: 0; width: 100%;
+  font-family: inherit; font-size: inherit; cursor: inherit; line-height: inherit;
+}
+</style>
        <!-- Cabeçalho com o MenuGeral presente em todo o site -->
     <header>
         <div id="MenuGeral" class="" >
@@ -117,7 +125,7 @@
             <%
                     List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("listar");
                     if (produtos != null) {
-                        out.println("<select name='produtoid'>");
+                        out.println("<select name='produtoid'> class='select_list'");
                         for (ProdutoVO p : produtos) {
                             out.println("<option value='" + p.getId() + "'>" + p.getNome() + " - " + p.getId() + "</option>");
                         }
