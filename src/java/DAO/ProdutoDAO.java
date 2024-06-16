@@ -173,6 +173,41 @@ public class ProdutoDAO {
     }
     
     return false;
-    }    
+    }
+    
+        public boolean updateProd(ProdutoVO product) {
+            try {
+            Connection con = new Conexao().estabeleceConexao();
+            if (con != null)
+            {
+                PreparedStatement ps;
+                String sql = "UPDATE produto SET"
+                        + "DS_NOME = ?, DS_PRODUTO = ?, VL_PRECO = ?, DS_TAMANHO = ?, DS_CATEGORIA = ?, DS_GENERO = ?, QT_QUANTIDADE = ?, DS_IMG = ?"
+                        + "WHERE CD_PRODUTO = ?";
+                
+                ps = con.prepareStatement(sql);
+                ps.setString(1, product.getNome());
+                ps.setString(2, product.getDs_produto());
+                ps.setString(3, Double.toString( product.getPreco() ));
+                ps.setString(4, product.getTamanho());
+                ps.setString(5, product.getCategoria());
+                ps.setString(6, product.getGenero());
+                ps.setString(7,Integer.toString( product.getQuantidade() ));
+                ps.setString(8, product.getDs_img());
+                ps.setString(9, String.valueOf( product.getId() ));
+;
+
+            if (ps.executeUpdate() != 0) {
+                    System.out.println("Sucesso ao atualizar");
+                } else {
+                    System.out.println("Não foi possível atualizar");
+                }
+                con.close();
+            }
+                } catch (SQLException erro) {
+            System.out.println("Exceção causada na inserção");
+        }
+         return true;
+   }
         
 }

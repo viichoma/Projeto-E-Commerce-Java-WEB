@@ -59,8 +59,24 @@ public class ProductController extends HttpServlet {
                 case "cadastrar":
                     CadProduct(request, response);
                     break;
+                case "carregar":
+                    int produtoId = Integer.parseInt(request.getParameter("produtoid"));
+                     ProdutoDAO g = new ProdutoDAO();
+                     ProdutoVO produto = g.getProdutoById(produtoId); // Método para buscar produto por ID
+                     request.setAttribute("produtoid", produto.getId());
+                     request.setAttribute("nome_produto", produto.getNome());
+                     request.setAttribute("ds_produto", produto.getDs_produto());
+                     request.setAttribute("preco_produto", produto.getPreco());
+                     request.setAttribute("tamanho_produto", produto.getTamanho());
+                     request.setAttribute("categoria_produto", produto.getCategoria());
+                     request.setAttribute("genero_produto", produto.getGenero());
+                     request.setAttribute("qnt_produto", produto.getQuantidade());
+                     request.setAttribute("img_produto", produto.getDs_img());
+                     request.getRequestDispatcher("ProductController?acao=listar_lista").forward(request, response);
+                     break;
                 case "atualizar":
-
+                    UpdateProduct(request, response);
+                    break;
                 case "excluir":
                     DelProduct(request, response);
                     break;
@@ -165,5 +181,32 @@ public class ProductController extends HttpServlet {
                 response.sendRedirect("admin_page.jsp"); 
             }
         }
+    }
+    
+        protected void UpdateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+             try (PrintWriter out = response.getWriter()) {
+            //Pegar os dados do usuario que serão gravados e armazenados no BD
+            ProdutoVO produto = new ProdutoVO();
+            
+            produto.setNome(request.getParameter("nome_produto"));
+            produto.setPreco(Double.parseDouble(request.getParameter("preco_produto")));
+            produto.setDs_produto(request.getParameter("ds_produto"));
+            produto.setTamanho(request.getParameter("tamanho_produto"));
+            produto.setCategoria(request.getParameter("categoria_produto"));
+            produto.setGenero(request.getParameter("genero_produto"));
+            produto.setQuantidade(Integer.parseInt(request.getParameter("qnt_produto")));
+            produto.setDs_img(request.getParameter("img_produto"));
+            produto.setId( Integer.parseInt(request.getParameter("produtoid")));
+            
+
+            ProdutoDAO ProdutoDAO = new ProdutoDAO();
+            //Se o update der certo, vai para a tela inicial, senão vai para a pagina de usuario
+            if(ProdutoDAO.updateProd(produto)){
+                response.sendRedirect("ProductController?acao=listar_lista");
+            }else{
+                response.sendRedirect("admin_page.jsp"); 
+            }
+        }
+        
     }
 }

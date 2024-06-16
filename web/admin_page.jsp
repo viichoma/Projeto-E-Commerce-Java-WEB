@@ -147,7 +147,7 @@ select {
             <div class="form-container">
                 <div class="form-column">
                     <form action="ProductController" method="post">
-                    <input type="hidden" name="acao" value="atualizar">
+                    <input type="hidden" name="acao" value="carregar">
             <%
                     produtos = (List<ProdutoVO>) request.getAttribute("listar");
                     if (produtos != null) {
@@ -158,11 +158,33 @@ select {
                         out.println("</select>");
                         }
             %><br><br>
-                    <input type="submit" class="submit_input" value="Atualizar">
+                    <input type="submit" style="width: 180px" class="submit_input" value="Carregar Detalhes">
                     </form>  
                 </div>
+                    
+                <form action="ProductController" method="post">
+                <div class="form-container">
+                    <div class="form-column">
+                        <input type="hidden" name="acao" value="atualizar">
+                        <input type="hidden" name="produtoid" value="<%= request.getAttribute("produtoid") %>">
+                        <input type="text" name="nome_produto" placeholder="Nome do produto" required class="login_input" value="<%= request.getAttribute("nome_produto") %>">
+                        <input type="text" name="ds_produto" placeholder="Descrição do produto" required class="login_input" value="<%= request.getAttribute("ds_produto") %>">
+                        <input type="number" name="preco_produto" placeholder="Preço do produto" required class="login_input" step="0.01" value="<%= request.getAttribute("preco_produto") %>">
+                        <input type="text" name="tamanho_produto" placeholder="Tamanho do produto" required class="login_input" value="<%= request.getAttribute("tamanho_produto") %>">
+                        <input type="text" name="categoria_produto" placeholder="Categoria do produto" required class="login_input" value="<%= request.getAttribute("categoria_produto") %>">
+                    </div>
+                    <div class="form-column">
+                        <input type="text" name="genero_produto" placeholder="Gênero do produto" required class="login_input" value="<%= request.getAttribute("genero_produto") %>">
+                        <input type="number" name="qnt_produto" placeholder="Quantidade" required class="login_input" value="<%= request.getAttribute("qnt_produto") %>">
+                        <input type="text" name="img_produto" placeholder="Nome da imagem" required class="login_input" value="<%= request.getAttribute("img_produto") %>">
+                        <br><br>
+                        <input type="submit" class="submit_input" value="Atualizar">
+                    </div>
+                </div>        
+                </form> 
+                        
             </div>
-        </div>
+            </div>
         </div>
                     
     </body>
