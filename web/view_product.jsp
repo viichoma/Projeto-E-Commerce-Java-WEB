@@ -87,12 +87,15 @@
                     <input type="hidden" name="image" value="<%= product.getDs_img() %>">
 
                     <div style="display: flex; justify-content: center; gap: 10px;">
-                        <input type="radio" id="size_P" name="size" value="P">
-                        <label for="size_P"> P </label>
-                        <input type="radio" id="size_M" name="size" value="M">
-                        <label for="size_M"> M </label>
-                        <input type="radio" id="size_G" name="size" value="G">
-                        <label for="size_G"> G </label>
+                        <%
+                            for (String tamanho : product.getTamanhos()) {
+                                String sizeId = "size_" + tamanho;
+                        %>
+                                <input type="radio" id="<%= sizeId %>" name="size" value="<%= tamanho %>">
+                                <label for="<%= sizeId %>"> <%= tamanho %> </label>
+                        <%
+                            }
+                        %>
                     </div><br><br>
                     <label for="product_quant"> Quantidade </label><br>
                     <input type="number" id="" name="product_quant" value="1" style="width: 80px; text-align: center;"><br><br>
