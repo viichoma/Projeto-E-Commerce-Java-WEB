@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!-- Lista os produtos automaticamente ao inicar o projeto -->
 <%
     response.sendRedirect("ProductController?acao=listar");
 %>

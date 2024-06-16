@@ -6,11 +6,14 @@
 
 <%@page import="java.util.List"%>
 <%@page import="VO.ProdutoVO"%>
+
+       <!-- Tratamento de sessão para saber se o usuario está logado, pegando o ID e se o o usuario é Administrador -->
+       <!-- Caso o Id não for nulo a pagina aparece, caso contrário redireciona para outro comando -->
 <%      
     session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
-    String userEmail = (String) session.getAttribute("email");
-    if ((userEmail.equals("vi@admin.com")) && (userEmail != null) && (userId != null)) {
+    String Administrador = (String) session.getAttribute("adm");
+    if (userId != null) {
 
 %>
 
@@ -21,150 +24,67 @@
         <title>Le Saint Jean</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="StyleScript/styles.css">
+        <script src="StyleScript/script.js"></script>
         <link rel="shortcut icon" type="imagex/png" href="./imagens/site_icon.ico">
     </head>
-    <script>
-        function openCity(evt, cityName) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-        </script>
-    
-    <style>
-            .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            text-align: center;
-            padding: 20px;
-        }
-        .form-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .form-column {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            
-            /* Style the tab */
-        }
-            /* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-  height: 750px;
-}
-   </style>
-    <body>
+<body>
        <!-- Cabeçalho com o MenuGeral presente em todo o site -->
-<header>
+    <header>
         <div id="MenuGeral" class="" >
             <div id="menu_logo">
                 <img src="imagens/site_logo.png" alt="alt" class="menu_logo"/>
-            </div>
-            <br>
+            </div><br>
+            
             <!-- Conjunto de acessos de login e carrinho do site-->
-                <nav style="float: right; margin-right: 10px;">
-                    <strong>
-                    <a href="user_profile.jsp" class="login">
-                    <%
-                    String username = (String) session.getAttribute("username");
-                    if (username != null && !username.trim().isEmpty()) {
-                        String firstName = username.split(" ")[0];
-                        out.println(firstName);
-                    } else { out.println("Nome não disponível") ;}
-                    %>
-                    </a>
-                    <a href="cart.jsp" class="carrinho">Carrinho</a>
-                    <%
-                        if (userId == 9) {
-                        out.print("<a href=\"admin_page.jsp\" class=\"carrinho\">ADM</a>");
-                        }
-                    %>
-
-                    </strong>
-                </nav>
+            <nav style="float: right; margin-right: 10px;">
+                <strong>
+                <a href="user_profile.jsp" class="login">
+       <!-- Verificar e pegar o nome do usuário -->
+            <%
+                String username = (String) session.getAttribute("username");
+                if (username != null && !username.trim().isEmpty()) {
+                    String firstName = username.split(" ")[0];
+                    out.println(firstName);
+                } else { out.println("Nome não disponível") ;}
+            %>
+                </a>
+                <a href="cart.jsp" class="carrinho">Carrinho</a>   
+       <!-- Caso ADM, acesso a página admin_page -->
+            <%
+                if ("Y".equals(Administrador)) {
+                    out.print("<a href=\"ProductController?acao=listar_lista\" class=\"carrinho\">ADM</a>");
+                }
+             %>
+                </strong>
+            </nav>
             
             <div>
                 <!-- Conjunto de acessos central do site-->
-                <nav style="">
+                <nav>
                     <strong>
                     <a href="ProductController?acao=listar" style="margin-left: 310px; margin-right: 40px;">Inicio</a>
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="about_us.jsp" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
-                </nav>
-                <br>
+                </nav><br>
             </div> 
         </div>
-        </header>
+    </header>
                     
-            <div class="tab">
-                <button class="tablinks" onclick="openCity(event, 'Adicionar') ">Adicionar</button>
-                <button class="tablinks" onclick="openCity(event, 'Excluir')">Excluir</button>
-                <button class="tablinks" onclick="openCity(event, 'Atualizar')">Atualizar</button>
-            </div>
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Adicionar') ">Adicionar</button>
+        <button class="tablinks" onclick="openCity(event, 'Excluir')">Excluir</button>
+        <button class="tablinks" onclick="openCity(event, 'Atualizar')">Atualizar</button>
+    </div>
                     
-        <div id="Adicionar" style="display: none;" class="tabcontent">
-            
-            <div style="text-align: center">
-                <form action="ProductController" method="post">
-                <!-- Se a ação for register, o LoginController efetua a funçao de gravar -->
-                <input type="hidden" name="acao" value="cadastrar">
-                
-                <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Adicionar Produto</h1>
-                <p>Preencha os dados para adicionar um produto novo:</p><br>
+    <div id="Adicionar" style="display: none;" class="tabcontent">   
+        <div style="text-align: center">
+            <form action="ProductController" method="post">
+            <!-- Formulario para o ProductController efetuar ação de cadastrar produto -->
+            <input type="hidden" name="acao" value="cadastrar">
+            <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Adicionar Produto</h1>
+            <p>Preencha os dados para adicionar um produto novo:</p><br>
                 
             <div class="form-container">
                 <div class="form-column">
@@ -178,76 +98,62 @@
                     <input type="text" name="genero_produto" placeholder="Gênero do produto" required class="login_input">
                     <input type="number" name="qnt_produto" placeholder="Quantidade" required class="login_input">
                     <input type="text" name="img_produto" placeholder="Nome da imagem" required class="login_input">
-                    <!--<input type="file" name="imagem_produto" id="" accept=".jpeg, .jpg, .png, .webp">-->
                 </div>
-            </div>
-                <br><br><input type="submit" class="submit_input">
-                </form> 
-             </div>
+            </div><br><br>
+                    <input type="submit" class="submit_input">
+            </form> 
         </div>
+    </div>
 
-        <div id="Excluir" style="display: none;" class="tabcontent">
-            <div style="text-align: center">
-                <h1 style="font-size: 40px; color: #7a98e4; text-shadow: 1px 2px #6E69CA;">Excluir Produto</h1>
-                <p>Preencha os dados para excluir um produto:</p><br>
-                <div class="form-container">
-                    <div class="form-column">
-                        <form action="ProductController" method="post">
-                            <input type="hidden" name="acao" value="excluir">
-                            <%
-                            List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("listar");
-                            if (produtos != null) {
-                                out.println("<select name='produtoid'>");
-                                for (ProdutoVO p : produtos) {
-                                    out.println("<option value='" + p.getId() + "'>" + p.getNome() + " - " + p.getId() + "</option>");
-                                }
-                                out.println("</select>");
-                            }
-                            %>
-                            <br><br>
-                            <input type="submit" value="Excluir">
-                        </form>  
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div id="Atualizar" style="display: none;" class="tabcontent">
-            
-            
-            <div style="text-align: center">
-
-                
-                <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Excluir Produto</h1>
-                <p>Preencha os dados para adicionar um produto novo:</p><br>
-                
+    <div id="Excluir" style="display: none;" class="tabcontent">
+        <div style="text-align: center">
+            <h1 style="font-size: 40px; color: #7a98e4; text-shadow: 1px 2px #6E69CA;">Excluir Produto</h1>
+            <p>Escolha um produto para excluir:</p><br>
             <div class="form-container">
                 <div class="form-column">
-                    
-                      <form action="ProductController" method="post">
-                    <input type="hidden" name="acao" value="atualizar">
-                           
+                    <form action="ProductController" method="post">
+                    <input type="hidden" name="acao" value="excluir">
             <%
-            //out.print("<div class=\"list_products\">");
-            if (produtos != null) {
-                    out.println("<select name='produtoid'>");
-                
-                for (int cont = 0; cont < produtos.size(); cont++) {
-                ProdutoVO p = (ProdutoVO) produtos.get(cont);
-                  out.println("<option value=~" + p.getId() + ">" + p.getNome() + "-" + ( p.getId() ) + "</option>");
-                }
-                out.println("</select>\n</td></tr>\n");
-            }
-            
-            %>
-                    <br><br><input type="submit"">
+                    List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("listar");
+                    if (produtos != null) {
+                        out.println("<select name='produtoid'>");
+                        for (ProdutoVO p : produtos) {
+                            out.println("<option value='" + p.getId() + "'>" + p.getNome() + " - " + p.getId() + "</option>");
+                        }
+                        out.println("</select>");
+                        }
+            %><br><br>
+                    <input type="submit" class="submit_input" value="Excluir">
                     </form>  
                 </div>
+            </div>
+        </div>
+    </div>
 
 
+     <div id="Atualizar" style="display: none;" class="tabcontent">
+        <div style="text-align: center">
+            <h1 style="font-size: 40px; color: #7a98e4; text-shadow: 1px 2px #6E69CA;">Atualizar Produto</h1>
+            <p>Escolha um produto para atualizar:</p><br>
+            <div class="form-container">
+                <div class="form-column">
+                    <form action="ProductController" method="post">
+                    <input type="hidden" name="acao" value="atualizar">
+            <%
+                    produtos = (List<ProdutoVO>) request.getAttribute("listar");
+                    if (produtos != null) {
+                        out.println("<select name='produtoid'>");
+                        for (ProdutoVO p : produtos) {
+                            out.println("<option value='" + p.getId() + "'>" + p.getNome() + " - " + p.getId() + "</option>");
+                        }
+                        out.println("</select>");
+                        }
+            %><br><br>
+                    <input type="submit" class="submit_input" value="Atualizar">
+                    </form>  
+                </div>
             </div>
-            </div>
+        </div>
         </div>
                     
     </body>

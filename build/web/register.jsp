@@ -7,15 +7,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    
     <head>
         <link rel="shortcut icon" type="imagex/png" href="./imagens/site_icon.ico">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="StyleScript/styles.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastro - Le Saint Jean</title>
     </head>
+    
     <body>
         <!-- Cabeçalho com o MenuGeral presente em todo o site -->
-        <header>
+    <header>
         <div id="MenuGeral" class="" >
             <div id="menu_logo">
                 <img src="imagens/site_logo.png" alt="alt" class="menu_logo"/>
@@ -37,11 +39,10 @@
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="about_us.jsp" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
-                </nav>
-                <br>
+                </nav><br>
             </div> 
         </div>
-        </header>
+    </header>
         <!-- Formulario de registro que leva os dados a controloadora LoginController -->
         <div style="text-align: center">
             <form action="LoginController" method="post">

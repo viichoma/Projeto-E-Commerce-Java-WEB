@@ -20,11 +20,12 @@ public class UsuarioDAO {
             if (con != null)
             {
             PreparedStatement ps; // Estrutura o sql
-            String sql = "insert into usuario (DS_NOME, DS_EMAIL, DS_SENHA) values ( ?, ?, ?)";
+            String sql = "insert into usuario (DS_NOME, DS_EMAIL, DS_SENHA, ST_ADMINISTRADOR) values ( ?, ?, ?, ?)";
             ps = con.prepareStatement(sql);  // Prepara uma declaração SQL para execução em um banco de dados.
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getEmail());
             ps.setString(3, user.getPassword());
+            ps.setString(4, "N" );
             if (ps.executeUpdate() != 0) {
                     System.out.println("Sucesso ao inserir");
                 } else {
@@ -98,7 +99,7 @@ public class UsuarioDAO {
         Connection con = null; //conexão com o bd
         PreparedStatement ps = null; // estrutura o sql
         ResultSet rs = null; //armazenará o resultado do bd
-        Integer userId = null;
+
         try {
         con = new Conexao().estabeleceConexao();
         if(con != null) {
@@ -133,7 +134,7 @@ public class UsuarioDAO {
         Connection con = null; //conexão com o bd
         PreparedStatement ps = null; // estrutura o sql
         ResultSet rs = null; //armazenará o resultado do bd
-        String username = null;
+
         try {
         con = new Conexao().estabeleceConexao();
         if(con != null) {
@@ -164,6 +165,42 @@ public class UsuarioDAO {
     return null;
     }
  
+    
+    public String getAdm(String email, String senha){
+        Connection con = null; //conexão com o bd
+        PreparedStatement ps = null; // estrutura o sql
+        ResultSet rs = null; //armazenará o resultado do bd
+        
+        try {
+        con = new Conexao().estabeleceConexao();
+        if(con != null) {
+            String sql = "select ST_ADMINISTRADOR from usuario where DS_EMAIL = ? and DS_SENHA = ? ";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, email);
+            ps.setString(2, senha);
+            rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getString("ST_ADMINISTRADOR");
+                        }
+        }
+        }
+        catch (SQLException erro) {
+        System.err.print("Exceção gerada ao tentar buscar os dados: " + erro.getMessage());
+        
+    } finally {
+        // Fechando conexões e recursos
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+        } catch (SQLException e) {
+            System.err.print("Erro ao fechar conexão: " + e.getMessage());
+        }
+    }
+    
+    return null;
+    }
+    
         public boolean ExcluirConta(int id){
         Connection con = null; //conexão com o bd
         PreparedStatement ps = null; // estrutura o sql

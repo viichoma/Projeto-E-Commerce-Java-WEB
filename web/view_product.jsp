@@ -7,10 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="VO.ProdutoVO"%>
 
+       <!-- Tratamento de sessão para saber se o usuario é Administrador -->
+       <!-- Pega todos os produtos gravados no BD e atribiu a product -->
 <%      
     session = request.getSession();
-    Integer userId = (Integer) session.getAttribute("userId");
-    String userEmail = (String) session.getAttribute("email");
+    String Administrador = (String) session.getAttribute("adm");
     
     ProdutoVO product = (ProdutoVO) request.getAttribute("product");
     if (product == null) {
@@ -25,39 +26,40 @@
         <title>Le Saint Jean</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="StyleScript/styles.css">
         <link rel="shortcut icon" type="imagex/png" href="./imagens/site_icon.ico">
     </head>
     
     <body>
        <!-- Cabeçalho com o MenuGeral presente em todo o site -->
        
-<header>
+    <header>
         <div id="MenuGeral" class="" >
             <div id="menu_logo">
                 <img src="imagens/site_logo.png" alt="alt" class="menu_logo"/>
-            </div>
-            <br>
+            </div><br>
             <!-- Conjunto de acessos de login e carrinho do site-->
-                <nav style="float: right; margin-right: 10px;">
-                    <strong>
-                    <a href="user_profile.jsp" class="login">
-                    <%
-                    String username = (String) session.getAttribute("username");
-                    if (username != null && !username.trim().isEmpty()) {
-                        String firstName = username.split(" ")[0];
-                        out.println(firstName);
-                    } else { out.println("Convidado") ;}
-                    %>
-                    </a>
-                    <a href="cart.jsp" class="carrinho">Carrinho</a>
-                    
-                    <%
-                        if (userEmail != null && userEmail.equals("vi@admin.com")) {
-                            out.print("<a href=\"ProductController?acao=listar_lista\" class=\"carrinho\">ADM</a>");                        }
-                    %>
-                    </strong>
-                </nav>
+            <nav style="float: right; margin-right: 10px;">
+                <strong>
+                <a href="user_profile.jsp" class="login">
+                <!-- Verificar e pegar o nome do usuário -->
+                <%
+                String username = (String) session.getAttribute("username");
+                if (username != null && !username.trim().isEmpty()) {
+                    String firstName = username.split(" ")[0];
+                    out.println(firstName);
+                } else { out.println("Login") ;}
+                %>
+                </a>
+                <a href="cart.jsp" class="carrinho">Carrinho</a>
+            <!-- Caso ADM, acesso a página admin_page -->
+               <%
+                if ("Y".equals(Administrador)) {
+                    out.print("<a href=\"ProductController?acao=listar_lista\" class=\"carrinho\">ADM</a>");
+                }
+                %>
+                </strong>
+            </nav>
             
             <div>
                 <!-- Conjunto de acessos central do site-->
@@ -67,16 +69,15 @@
                     <a href="#" style="margin-right: 40px;">Produtos</a>
                     <a href="about_us.jsp" style="margin-right: 40px;">Sobre nós</a>
                     </strong>
-                </nav>
-                <br>
+                </nav><br>
             </div> 
         </div>
-        </header>
-                    
-        <div class="view_product">
-            <div style="width: 600px; height: auto;">
-                <img style="width: 500px; height: auto; border-radius: 5px;" src="<%= product.getDs_img() %>" alt="alt"/>
-            </div>
+    </header>
+       <!-- Monta a página do produto, pegando os dados do produto -->             
+    <div class="view_product">
+        <div style="width: 600px; height: auto;">
+            <img style="width: 500px; height: auto; border-radius: 5px;" src="<%= product.getDs_img() %>" alt="alt"/>
+        </div>
             <div style="height: 400px; flex: 0; padding: 52px;">
                 <pre style="font-weight: 800; font-size: 20px"><%= product.getNome() %><h2>R$ <%= product.getPreco() %></h2></pre>
                 <form action="" style="display: flex; flex-direction: column; align-items: center;">
@@ -86,20 +87,20 @@
                     <input type="hidden" name="price" value="<%= product.getPreco() %>">
                     <input type="hidden" name="image" value="<%= product.getDs_img() %>">
 
-                    <div style="display: flex; justify-content: center; gap: 10px;">
-                        <input type="radio" id="size_P" name="size" value="P">
-                        <label for="size_P"> P </label>
-                        <input type="radio" id="size_M" name="size" value="M">
-                        <label for="size_M"> M </label>
-                        <input type="radio" id="size_G" name="size" value="G">
-                        <label for="size_G"> G </label>
-                    </div><br><br>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <input type="radio" id="size_P" name="size" value="P">
+                    <label for="size_P"> P </label>
+                    <input type="radio" id="size_M" name="size" value="M">
+                    <label for="size_M"> M </label>
+                    <input type="radio" id="size_G" name="size" value="G">
+                    <label for="size_G"> G </label>
+                </div><br><br>
                     <label for="product_quant"> Quantidade </label><br>
                     <input type="number" id="" name="product_quant" value="1" style="width: 80px; text-align: center;"><br><br>
                     <input type="submit" class="add_cart" value="Adicionar ao Carrinho">
                 </form>
             </div>
-        </div>
+    </div>
 
     </body>
 </html>

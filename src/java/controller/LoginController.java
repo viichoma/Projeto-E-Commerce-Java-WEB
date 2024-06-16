@@ -80,6 +80,7 @@ public class LoginController extends HttpServlet {
                 //Pegar os do usuario que logou
                 Integer userID = uDAO.getID(email, senha);
                 String username = uDAO.getUsername(email, senha);
+                String adm = uDAO.getAdm(email, senha);
                 
               //Se login tiver sucesso, vai para a pagina inicial logada, senão vai para o registro.  
               // Verifica a função getID também, para caso o ID ficar nulo.
@@ -88,6 +89,7 @@ public class LoginController extends HttpServlet {
                     session.setAttribute("userId", userID); // Setar atributos à sessão
                     session.setAttribute("email", email);
                     session.setAttribute("username", username);
+                    session.setAttribute("adm", adm);
                     
                     response.sendRedirect("ProductController?acao=listar"); // Encaminhar para logged.jsp caso tudo ocorra bem.
                 } else {

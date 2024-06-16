@@ -15,13 +15,14 @@
         <title>Le Saint Jean</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="StyleScript/styles.css">
         <link rel="shortcut icon" type="imagex/png" href="./imagens/site_icon.ico">
     </head>
     
     <body>
        <!-- Cabeçalho com o MenuGeral presente em todo o site -->
 <header>
+           <!-- Cabeçalho com o MenuGeral presente em todo o site -->
         <div id="MenuGeral" class="" >
             <div id="menu_logo">
                 <img src="imagens/site_logo.png" alt="alt" class="menu_logo"/>
@@ -58,39 +59,35 @@
         </div>
         </header>
                     
+       <!-- Comando para listagem dos produtos do BD -->    
        <div class="list_products">
-            <%
-            //out.print("<div class=\"list_products\">");
-            List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("lista");
-            if (produtos != null) {
-                //out.print("Achados: " + produtos.size() + "<br><br><br>");
-                out.print("<table>");
-                for (int cont = 0; cont < produtos.size(); cont++) {
-                    ProdutoVO p = (ProdutoVO) produtos.get(cont);  
-
-                    if (cont % 5 == 0) {
-                        out.print("<tr>");
-                    }
-                    
-                    out.print("<td>");
-                    out.print("<div style='width: 200px; height: auto; margin-right: 100px;'>");
-                        out.print("<a href='ProductController?acao=visualizar&id=" + p.getId() + "'>");
-                        out.print("<img style=\"width: 210px; height: 315px; border-radius: 5px; border: 1.7px solid #8DA8EE; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"" + p.getDs_img() + "\" alt=\"alt\"/>");
-                        out.print("<pre style='font-weight: 800; font-size: 14px'>" + p.getNome() + "<br>R$ " + p.getPreco() + "</pre>");
-                        out.print("</a>");
-                    out.print("</div>");
-                    out.print("</td>");
-
-                    if ((cont + 1) % 5 == 0 || cont == produtos.size() - 1) {
-                        out.print("</tr>");
-                    }
-                    
+        <%
+        List<ProdutoVO> produtos = (List<ProdutoVO>) request.getAttribute("lista");
+        if (produtos != null) {
+            out.print("<table>");
+            for (int cont = 0; cont < produtos.size(); cont++) {
+                ProdutoVO p = (ProdutoVO) produtos.get(cont);
+                if (cont % 5 == 0) {
+                    out.print("<tr>");
                 }
-                
-                out.print("</table>");
-            }
-            %>
+                out.print("<td>");
+                out.print("<div style='width: 200px; height: auto; margin-right: 100px;'>");
+                    out.print("<a href='ProductController?acao=visualizar&id=" + p.getId() + "'>");
+                    out.print("<img style=\"width: 210px; height: 315px; border-radius: 5px; border: 1.7px solid #8DA8EE; box-shadow: 4.5px 4.5px #8DA8EE;\" src=\"" + p.getDs_img() + "\" alt=\"alt\"/>");
+                    out.print("<pre style='font-weight: 800; font-size: 14px'>" + p.getNome() + "<br>R$ " + p.getPreco() + "</pre>");
+                    out.print("</a>");
+                out.print("</div>");
+                out.print("</td>");
+
+                if ((cont + 1) % 5 == 0 || cont == produtos.size() - 1) {
+                    out.print("</tr>");
+                }      
+            }    
+            out.print("</table>");
+        }
+        %>
        </div>
+
         
     </body>
 </html>

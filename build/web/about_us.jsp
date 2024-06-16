@@ -9,6 +9,7 @@
     session = request.getSession();
     Integer userId = (Integer) session.getAttribute("userId");
     String userEmail = (String) session.getAttribute("email");
+    String Administrador = (String) session.getAttribute("adm");
 %> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,7 +19,7 @@
         <title>Le Saint Jean</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="StyleScript/styles.css">
         <link rel="shortcut icon" type="imagex/png" href="./imagens/site_icon.ico">
     </head>
     
@@ -45,7 +46,7 @@
                     <a href="cart.jsp" class="carrinho">Carrinho</a>
                       
                     <%
-                        if (userEmail != null && userEmail.equals("vi@admin.com")) {
+                        if ("Y".equals(Administrador)) {
                             out.print("<a href=\"ProductController?acao=listar_lista\" class=\"carrinho\">ADM</a>");
                         }
                     %>
