@@ -75,8 +75,11 @@
                 <input type="hidden" name="acao" value="update">
                 <h1 style=" font-size: 40px; color: #7a98e4; text-shadow:  1px 2px #6E69CA;">Meu Perfil</h1>
                 <p>Altere os campos caso queira alterar seus dados:</p><br>
+                <label>Nome:</label><br>
                 <input type="text" name="nome_profile" placeholder="Nome" required value="<% out.println( session.getAttribute("username"));%>"  class="login_input"><br><br>
+                <label>E-mail</label><br>
                 <input type="text" name="email_profile" placeholder="E-mail" required value="<% out.println( session.getAttribute("email"));%>" class="login_input"><br><br>
+                <label>Senha nova:</label><br>
                 <input type="password" name="senha_profile" placeholder="Nova senha" required class="login_input"><br><br>
                 <input type="submit" class="submit_input" value="Alterar">
             </form>

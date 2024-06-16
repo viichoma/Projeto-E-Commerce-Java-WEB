@@ -98,7 +98,7 @@ select {
                 <div class="form-column">
                     <input type="text" name="nome_produto" placeholder="Nome do produto" required class="login_input">
                     <input type="text" name="ds_produto" placeholder="Descrição do produto" required class="login_input">
-                    <input type="number" name="preco_produto" placeholder="Preço do produto" required class="login_input">
+                    <input type="number" name="preco_produto" placeholder="Preço do produto" required class="login_input" step="0.01">
                     <input type="text" name="tamanho_produto" placeholder="Tamanho do produto" required class="login_input">
                 </div>
                 <div class="form-column">
