@@ -94,7 +94,7 @@ public class ProdutoDAO {
         try {
             Connection con = new Conexao().estabeleceConexao(); // Estabelece conexão com o BD
             if (con != null) {
-                String sql = "SELECT CD_PRODUTO, DS_NOME, DS_PRODUTO, VL_PRECO, QT_QUANTIDADE, DS_CATEGORIA, DS_IMG FROM produto WHERE CD_PRODUTO = ?";
+                String sql = "SELECT CD_PRODUTO, DS_NOME, DS_PRODUTO, VL_PRECO, DS_TAMANHO, QT_QUANTIDADE, DS_CATEGORIA, DS_GENERO, DS_IMG FROM produto WHERE CD_PRODUTO = ?";
                 PreparedStatement ps = con.prepareStatement(sql); // Prepara a declaração SQL
                 ps.setInt(1, id); // Define o parâmetro do ID na declaração SQL
                 ResultSet rs = ps.executeQuery(); // Executa a consulta e armazena o resultado em 'rs'
@@ -105,7 +105,9 @@ public class ProdutoDAO {
                     product.setNome(rs.getString("DS_NOME"));
                     product.setDs_produto(rs.getString("DS_PRODUTO"));
                     product.setPreco(rs.getDouble("VL_PRECO"));
+                    product.setTamanho(rs.getString("DS_TAMANHO"));
                     product.setCategoria(rs.getString("DS_CATEGORIA"));
+                    product.setGenero(rs.getString("DS_GENERO"));
                     product.setQuantidade(rs.getInt("QT_QUANTIDADE"));
                     product.setDs_img(rs.getString("DS_IMG"));
                     
@@ -176,38 +178,36 @@ public class ProdutoDAO {
     }
     
         public boolean updateProd(ProdutoVO product) {
-            try {
-            Connection con = new Conexao().estabeleceConexao();
-            if (con != null)
-            {
-                PreparedStatement ps;
-                String sql = "UPDATE produto SET"
-                        + "DS_NOME = ?, DS_PRODUTO = ?, VL_PRECO = ?, DS_TAMANHO = ?, DS_CATEGORIA = ?, DS_GENERO = ?, QT_QUANTIDADE = ?, DS_IMG = ?"
-                        + "WHERE CD_PRODUTO = ?";
-                
-                ps = con.prepareStatement(sql);
-                ps.setString(1, product.getNome());
-                ps.setString(2, product.getDs_produto());
-                ps.setString(3, Double.toString( product.getPreco() ));
-                ps.setString(4, product.getTamanho());
-                ps.setString(5, product.getCategoria());
-                ps.setString(6, product.getGenero());
-                ps.setString(7,Integer.toString( product.getQuantidade() ));
-                ps.setString(8, product.getDs_img());
-                ps.setString(9, String.valueOf( product.getId() ));
-;
+    try {
+        Connection con = new Conexao().estabeleceConexao();
+        if (con != null) {
+            PreparedStatement ps;
+            String sql = "UPDATE produto SET "
+                    + "DS_NOME = ?, DS_PRODUTO = ?, VL_PRECO = ?, DS_TAMANHO = ?, DS_CATEGORIA = ?, DS_GENERO = ?, QT_QUANTIDADE = ?, DS_IMG = ? "
+                    + "WHERE CD_PRODUTO = ?";
 
+            ps = con.prepareStatement(sql);
+            ps.setString(1, product.getNome());
+            ps.setString(2, product.getDs_produto());
+            ps.setDouble(3, product.getPreco()); 
+            ps.setString(4, product.getTamanho());
+            ps.setString(5, product.getCategoria());
+            ps.setString(6, product.getGenero());
+            ps.setInt(7, product.getQuantidade()); 
+            ps.setString(8, product.getDs_img());
+            ps.setInt(9, product.getId());  
             if (ps.executeUpdate() != 0) {
-                    System.out.println("Sucesso ao atualizar");
-                } else {
-                    System.out.println("Não foi possível atualizar");
-                }
-                con.close();
+                System.out.println("Sucesso ao atualizar");
+            } else {
+                System.out.println("Não foi possível atualizar");
             }
-                } catch (SQLException erro) {
-            System.out.println("Exceção causada na inserção");
+            con.close();
         }
-         return true;
-   }
+    } catch (SQLException erro) {
+        System.out.println("Exceção causada na inserção: " + erro.getMessage());
+    }
+    return true;
+}
+
         
 }
