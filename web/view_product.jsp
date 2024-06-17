@@ -98,8 +98,6 @@
                             }
                         %>
                     </div><br><br>
-                    <label for="product_quant"> Quantidade </label><br>
-                    <input type="number" id="" name="product_quant" value="1" style="width: 80px; text-align: center;"><br><br>
                     <a href="add-to-cart?id=<%= product.getId() %>" class="add_cart" style="text-align: center; align-content: center;">Adicionar ao Carrinho</a>
                 </form>
             </div>

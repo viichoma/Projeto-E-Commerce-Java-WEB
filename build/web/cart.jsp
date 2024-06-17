@@ -15,7 +15,7 @@
     String Administrador = (String) session.getAttribute("adm");
     ArrayList<CartVO> cart_list = (ArrayList<CartVO>) session.getAttribute("cart-list");
     List<CartVO> cartProduct = null;
-    if (cart_list != null && !cart_list.isEmpty()) {
+    if (cart_list != null) {
         ProdutoDAO pDao = new ProdutoDAO();
         cartProduct = pDao.getCartProducts(cart_list);
         request.setAttribute("cart_list", cart_list);
@@ -50,7 +50,7 @@
                                     String firstName = username.split(" ")[0];
                                     out.println(firstName);
                                 } else {
-                                    out.println("Nome não disponível");
+                                    out.println("Convidado");
                                 }
                             %>
                         </a>
@@ -120,9 +120,7 @@
                             <form action="order-now" method="post" class="form-inline">
                                 <input type="hidden" name="id" value="<%= c.getId()%>" class="form-input">
                                 <div class="form-group d-flex justify-content-between">
-                                    <a class="btn bnt-sm btn-incre" href="quantity-inc-dec?action=inc&id=<%=c.getId()%>"><i class="fas fa-plus-square"></i></a> 
                                     <input type="number" name="quantity" class="form-control"  value="<%=c.getItem_quantidade()%>" style="text-align: center; width: 100px;"> 
-                                    <a class="btn btn-sm btn-decre" href="quantity-inc-dec?action=dec&id=<%=c.getId()%>"><i class="fas fa-minus-square"></i></a>
                                 </div>
                             </form>
                         </td>
@@ -133,6 +131,11 @@
                     </tr>
                     <%
                             }
+                        }
+                        if (cart_list.isEmpty()) {
+                    %>
+                    <p>Seu carrinho está vazio.</p>
+                    <%
                         }
                     %>
                 </table>
