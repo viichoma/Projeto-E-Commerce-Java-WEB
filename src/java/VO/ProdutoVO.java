@@ -11,6 +11,7 @@ import java.util.List;
  * @author unico
  */
 public class ProdutoVO {
+
     private int id;
     private String nome;
     private String ds_produto;
@@ -101,7 +102,5 @@ public class ProdutoVO {
     public void setDs_img(String ds_img) {
         this.ds_img = ds_img;
     }
-    
-    
-    
+
 }

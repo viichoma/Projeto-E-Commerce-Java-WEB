@@ -28,7 +28,7 @@ public class ProdutoDAO {
     public ProdutoDAO() throws SQLException {
         this.con = new Conexao().estabeleceConexao(); // Estabelece a conexão com o BD
     }
-    
+
     //Método para gravar um usuario no Banco de Dados
     public boolean cadastrar(ProdutoVO product) {
         try {
